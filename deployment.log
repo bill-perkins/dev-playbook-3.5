@@ -1,0 +1,1148 @@
+2020-06-03 14:02:33,561 p=116659 u=viyadep |   [WARNING]: Skipping plugin (/usr/lib/python2.7/site-packages/ansible/plugins/connection/accelerate.py) as it seems to be invalid:
+cannot import name key_for_hostname
+
+2020-06-03 14:02:34,457 p=116659 u=viyadep |  PLAY [localhost] ***********************************************************************************************************************
+2020-06-03 14:02:37,739 p=116659 u=viyadep |  TASK [Gathering Facts] *****************************************************************************************************************
+2020-06-03 14:02:37,740 p=116659 u=viyadep |  ok: [localhost]
+2020-06-03 14:02:55,863 p=116659 u=viyadep |   [ERROR]: User interrupted execution
+
+2020-06-03 14:04:55,878 p=119210 u=viyadep |   [WARNING]: Skipping plugin (/usr/lib/python2.7/site-packages/ansible/plugins/connection/accelerate.py) as it seems to be invalid:
+cannot import name key_for_hostname
+
+2020-06-03 14:04:56,190 p=119210 u=viyadep |  PLAY [localhost] ***********************************************************************************************************************
+2020-06-03 14:04:56,197 p=119210 u=viyadep |  TASK [Gathering Facts] *****************************************************************************************************************
+2020-06-03 14:04:58,294 p=119210 u=viyadep |  ok: [localhost]
+2020-06-03 14:05:44,557 p=119210 u=viyadep |  PLAY [Merge SAS Viya deployment files] *************************************************************************************************
+2020-06-03 14:05:44,618 p=119210 u=viyadep |  TASK [Generate the backup extension] ***************************************************************************************************
+2020-06-03 14:05:44,977 p=119210 u=viyadep |  changed: [localhost]
+2020-06-03 14:05:45,009 p=119210 u=viyadep |  TASK [debug] ***************************************************************************************************************************
+2020-06-03 14:05:45,028 p=119210 u=viyadep |  ok: [localhost] => {
+    "msg": "/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/viya-ark/playbooks/merge-playbook"
+}
+2020-06-03 14:05:45,055 p=119210 u=viyadep |  TASK [Verify that the specified current inventory file exists] *************************************************************************
+2020-06-03 14:05:45,432 p=119210 u=viyadep |  ok: [localhost]
+2020-06-03 14:05:45,467 p=119210 u=viyadep |  TASK [Stop when the current inventory file does not exist] *****************************************************************************
+2020-06-03 14:05:45,489 p=119210 u=viyadep |  fatal: [localhost]: FAILED! => {
+    "assertion": "current_inventory_file_path.stat.exists and current_inventory_file_path.stat.isreg", 
+    "changed": false, 
+    "evaluated_to": false, 
+    "msg": "The specified location is not a fully qualified path name to an inventory file."
+}
+2020-06-03 14:05:45,490 p=119210 u=viyadep |  PLAY RECAP *****************************************************************************************************************************
+2020-06-03 14:05:45,490 p=119210 u=viyadep |  localhost                  : ok=4    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2020-06-03 14:06:30,725 p=17895 u=viyadep |   [WARNING]: Skipping plugin (/usr/lib/python2.7/site-packages/ansible/plugins/connection/accelerate.py) as it seems to be invalid:
+cannot import name key_for_hostname
+
+2020-06-03 14:06:31,040 p=17895 u=viyadep |  PLAY [localhost] ***********************************************************************************************************************
+2020-06-03 14:06:31,047 p=17895 u=viyadep |  TASK [Gathering Facts] *****************************************************************************************************************
+2020-06-03 14:06:33,180 p=17895 u=viyadep |  ok: [localhost]
+2020-06-03 14:06:38,939 p=17895 u=viyadep |  PLAY [Merge SAS Viya deployment files] *************************************************************************************************
+2020-06-03 14:06:38,985 p=17895 u=viyadep |  TASK [Generate the backup extension] ***************************************************************************************************
+2020-06-03 14:06:39,317 p=17895 u=viyadep |  changed: [localhost]
+2020-06-03 14:06:39,341 p=17895 u=viyadep |  TASK [debug] ***************************************************************************************************************************
+2020-06-03 14:06:39,357 p=17895 u=viyadep |  ok: [localhost] => {
+    "msg": "/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/viya-ark/playbooks/merge-playbook"
+}
+2020-06-03 14:06:39,380 p=17895 u=viyadep |  TASK [Verify that the specified current inventory file exists] *************************************************************************
+2020-06-03 14:06:39,760 p=17895 u=viyadep |  ok: [localhost]
+2020-06-03 14:06:39,784 p=17895 u=viyadep |  TASK [Stop when the current inventory file does not exist] *****************************************************************************
+2020-06-03 14:06:39,801 p=17895 u=viyadep |  ok: [localhost] => {
+    "changed": false, 
+    "msg": "All assertions passed"
+}
+2020-06-03 14:06:39,825 p=17895 u=viyadep |  TASK [Inquire the deployment target in the current inventory file] *********************************************************************
+2020-06-03 14:06:40,379 p=17895 u=viyadep |  changed: [localhost]
+2020-06-03 14:06:40,403 p=17895 u=viyadep |  TASK [debug] ***************************************************************************************************************************
+2020-06-03 14:06:40,417 p=17895 u=viyadep |  ok: [localhost] => {
+    "msg": "  hosts (6):\n    deployTarget\n    micro2\n    controller1\n    controller2\n    worker1\n    worker2"
+}
+2020-06-03 14:06:40,442 p=17895 u=viyadep |  TASK [Set a deployTaget host name when a single machine deployment is detected] ********************************************************
+2020-06-03 14:06:40,457 p=17895 u=viyadep |  skipping: [localhost]
+2020-06-03 14:06:40,481 p=17895 u=viyadep |  TASK [Define a variable for the merged_files folder] ***********************************************************************************
+2020-06-03 14:06:40,495 p=17895 u=viyadep |  ok: [localhost]
+2020-06-03 14:06:40,519 p=17895 u=viyadep |  TASK [Set a new Ansible configuration file variable] ***********************************************************************************
+2020-06-03 14:06:40,533 p=17895 u=viyadep |  ok: [localhost]
+2020-06-03 14:06:40,560 p=17895 u=viyadep |  TASK [Set an current_files_dir variable] ***********************************************************************************************
+2020-06-03 14:06:40,579 p=17895 u=viyadep |  ok: [localhost]
+2020-06-03 14:06:40,603 p=17895 u=viyadep |  TASK [Set an current ansible.cfg file variable] ****************************************************************************************
+2020-06-03 14:06:40,622 p=17895 u=viyadep |  ok: [localhost]
+2020-06-03 14:06:40,649 p=17895 u=viyadep |  TASK [Set a merge_default_host variable] ***********************************************************************************************
+2020-06-03 14:06:40,669 p=17895 u=viyadep |  ok: [localhost]
+2020-06-03 14:06:40,695 p=17895 u=viyadep |  TASK [Set a tenant ID list variable] ***************************************************************************************************
+2020-06-03 14:06:40,712 p=17895 u=viyadep |  skipping: [localhost]
+2020-06-03 14:06:40,742 p=17895 u=viyadep |  TASK [Convert the supplied tenantID_list string to an array list] **********************************************************************
+2020-06-03 14:06:40,758 p=17895 u=viyadep |  skipping: [localhost]
+2020-06-03 14:06:40,781 p=17895 u=viyadep |  TASK [debug] ***************************************************************************************************************************
+2020-06-03 14:06:40,798 p=17895 u=viyadep |  skipping: [localhost]
+2020-06-03 14:06:40,821 p=17895 u=viyadep |  TASK [Verify that the current tenant_id_vars.yml file exists for the specified tenant ID] **********************************************
+2020-06-03 14:06:40,837 p=17895 u=viyadep |  skipping: [localhost]
+2020-06-03 14:06:40,860 p=17895 u=viyadep |  TASK [debug] ***************************************************************************************************************************
+2020-06-03 14:06:40,877 p=17895 u=viyadep |  skipping: [localhost]
+2020-06-03 14:06:40,901 p=17895 u=viyadep |  TASK [Stop when the current tenant_vars.yml is not found in the directory where the current inventory file is saved] *******************
+2020-06-03 14:06:40,917 p=17895 u=viyadep |  skipping: [localhost]
+2020-06-03 14:06:40,941 p=17895 u=viyadep |  TASK [Verify that the current Ansible configuration file exists] ***********************************************************************
+2020-06-03 14:06:41,163 p=17895 u=viyadep |  ok: [localhost]
+2020-06-03 14:06:41,186 p=17895 u=viyadep |  TASK [Stop when the current ansible.cfg is not found in the directory where the current inventory file is saved] ***********************
+2020-06-03 14:06:41,203 p=17895 u=viyadep |  skipping: [localhost]
+2020-06-03 14:06:41,227 p=17895 u=viyadep |  TASK [Set vars.yml file variable] ******************************************************************************************************
+2020-06-03 14:06:41,242 p=17895 u=viyadep |  ok: [localhost]
+2020-06-03 14:06:41,265 p=17895 u=viyadep |  TASK [Verify that the current vars.yml exists] *****************************************************************************************
+2020-06-03 14:06:41,492 p=17895 u=viyadep |  ok: [localhost]
+2020-06-03 14:06:41,516 p=17895 u=viyadep |  TASK [Stop when the current vars.yml is not found in the directory where the current inventory file is saved] **************************
+2020-06-03 14:06:41,532 p=17895 u=viyadep |  skipping: [localhost]
+2020-06-03 14:06:41,554 p=17895 u=viyadep |  TASK [Verify that the merged_folder directory exists] **********************************************************************************
+2020-06-03 14:06:41,683 p=17895 u=viyadep |  ok: [localhost]
+2020-06-03 14:06:41,707 p=17895 u=viyadep |  TASK [Create a folder where all the configuration files, log files, and diff text will be saved] ***************************************
+2020-06-03 14:06:42,011 p=17895 u=viyadep |  changed: [localhost]
+2020-06-03 14:06:42,036 p=17895 u=viyadep |  TASK [Copy inventory.ini, ansible.cfg, and vars.yml to the merged_folder directory] ****************************************************
+2020-06-03 14:06:42,437 p=17895 u=viyadep |  changed: [localhost] => (item=inventory.ini)
+2020-06-03 14:06:42,664 p=17895 u=viyadep |  changed: [localhost] => (item=ansible.cfg)
+2020-06-03 14:06:42,891 p=17895 u=viyadep |  changed: [localhost] => (item=vars.yml)
+2020-06-03 14:06:42,915 p=17895 u=viyadep |  TASK [Set the original invenotry file name variable] ***********************************************************************************
+2020-06-03 14:06:42,931 p=17895 u=viyadep |  ok: [localhost]
+2020-06-03 14:06:42,955 p=17895 u=viyadep |  TASK [Copy the original inventory file to the merged_folder directory] *****************************************************************
+2020-06-03 14:06:43,195 p=17895 u=viyadep |  changed: [localhost]
+2020-06-03 14:06:43,218 p=17895 u=viyadep |  TASK [Copy sample_tenant_vars.yml to the merged_folder directory] **********************************************************************
+2020-06-03 14:06:43,234 p=17895 u=viyadep |  skipping: [localhost]
+2020-06-03 14:06:43,257 p=17895 u=viyadep |  TASK [Verify user Write permissions on Ansible configuration file] *********************************************************************
+2020-06-03 14:06:43,398 p=17895 u=viyadep |  ok: [localhost]
+2020-06-03 14:06:43,421 p=17895 u=viyadep |  TASK [Check Ansible configuration file permissions] ************************************************************************************
+2020-06-03 14:06:43,644 p=17895 u=viyadep |  ok: [localhost]
+2020-06-03 14:06:43,669 p=17895 u=viyadep |  TASK [Assert Write permissions on Ansible configuration file] **************************************************************************
+2020-06-03 14:06:43,691 p=17895 u=viyadep |  ok: [localhost] => {
+    "changed": false, 
+    "msg": "All assertions passed"
+}
+2020-06-03 14:06:43,715 p=17895 u=viyadep |  TASK [Check whether the host group name includes a hyphen (-) in the new inventory file] ***********************************************
+2020-06-03 14:06:44,010 p=17895 u=viyadep |  ok: [localhost]
+2020-06-03 14:06:44,033 p=17895 u=viyadep |  TASK [Check whether the host group name includes a hyphen (-) in the current inventory file] *******************************************
+2020-06-03 14:06:44,230 p=17895 u=viyadep |  ok: [localhost]
+2020-06-03 14:06:44,290 p=17895 u=viyadep |  TASK [Make sure three casseerver host groups include an underscore instead of a hyphen in a temporary file] ****************************
+2020-06-03 14:06:44,543 p=17895 u=viyadep |  ok: [localhost] => (item={u'regexp': u'sas-casserver-primary', u'line': u'sas_casserver_primary'})
+2020-06-03 14:06:44,673 p=17895 u=viyadep |  ok: [localhost] => (item={u'regexp': u'sas-casserver-worker', u'line': u'sas_casserver_worker'})
+2020-06-03 14:06:44,800 p=17895 u=viyadep |  ok: [localhost] => (item={u'regexp': u'sas-casserver-secondary', u'line': u'sas_casserver_secondary'})
+2020-06-03 14:06:44,826 p=17895 u=viyadep |  TASK [Generate a cat vars.yml stdout] **************************************************************************************************
+2020-06-03 14:06:45,007 p=17895 u=viyadep |  changed: [localhost]
+2020-06-03 14:06:45,031 p=17895 u=viyadep |  TASK [set_fact] ************************************************************************************************************************
+2020-06-03 14:06:45,047 p=17895 u=viyadep |  ok: [localhost]
+2020-06-03 14:06:45,069 p=17895 u=viyadep |  TASK [Check whether the NODE_TYPE property exists in the pre merged vars.yml] **********************************************************
+2020-06-03 14:06:45,208 p=17895 u=viyadep |  ok: [localhost]
+2020-06-03 14:06:45,234 p=17895 u=viyadep |  TASK [Check whether the HA_PGPOOL_VIRTUAL_IP property exists in the pre merged vars.yml] ***********************************************
+2020-06-03 14:06:45,376 p=17895 u=viyadep |  changed: [localhost]
+2020-06-03 14:06:45,399 p=17895 u=viyadep |  TASK [Uncomment out the vars.yml properties in the merged folder if they are activated in the current vars.yml] ************************
+2020-06-03 14:06:45,548 p=17895 u=viyadep |  ok: [localhost] => (item={u'regexp': u'#appserver', u'line': u'appserver'})
+2020-06-03 14:06:45,680 p=17895 u=viyadep |  changed: [localhost] => (item={u'regexp': u'#CAS_DISK_CACHE', u'line': u'CAS_DISK_CACHE'})
+2020-06-03 14:06:45,687 p=17895 u=viyadep |  skipping: [localhost] => (item={u'regexp': u'#CAS_SETTINGS', u'line': u'CAS_SETTINGS'}) 
+2020-06-03 14:06:45,693 p=17895 u=viyadep |  skipping: [localhost] => (item={u'regexp': u'#CAS_VIRTUAL_HOST', u'line': u'CAS_VIRTUAL_HOST'}) 
+2020-06-03 14:06:45,699 p=17895 u=viyadep |  skipping: [localhost] => (item={u'regexp': u'#CAS_VIRTUAL_PROTO', u'line': u'CAS_VIRTUAL_PROTO'}) 
+2020-06-03 14:06:45,705 p=17895 u=viyadep |  skipping: [localhost] => (item={u'regexp': u'#CAS_VIRTUAL_PORT', u'line': u'CAS_VIRTUAL_PORT'}) 
+2020-06-03 14:06:45,710 p=17895 u=viyadep |  skipping: [localhost] => (item={u'regexp': u'#casenv_admin_user', u'line': u'casenv_admin_user'}) 
+2020-06-03 14:06:45,718 p=17895 u=viyadep |  skipping: [localhost] => (item={u'regexp': u'#colocation', u'line': u'colocation'}) 
+2020-06-03 14:06:45,725 p=17895 u=viyadep |  skipping: [localhost] => (item={u'regexp': u'#FOUNDATION_CONFIGURATION', u'line': u'FOUNDATION_CONFIGURATION'}) 
+2020-06-03 14:06:45,732 p=17895 u=viyadep |  skipping: [localhost] => (item={u'regexp': u'#gcport', u'line': u'gcport'}) 
+2020-06-03 14:06:45,739 p=17895 u=viyadep |  skipping: [localhost] => (item={u'regexp': u'#httpport', u'line': u'httpport'}) 
+2020-06-03 14:06:45,872 p=17895 u=viyadep |  ok: [localhost] => (item={u'regexp': u'#init', u'line': u'init'})
+2020-06-03 14:06:46,000 p=17895 u=viyadep |  changed: [localhost] => (item={u'regexp': u'#port', u'line': u'port'})
+2020-06-03 14:06:46,007 p=17895 u=viyadep |  skipping: [localhost] => (item={u'regexp': u'#sasenv_cas_host', u'line': u'sasenv_cas_host'}) 
+2020-06-03 14:06:46,013 p=17895 u=viyadep |  skipping: [localhost] => (item={u'regexp': u'#sasenv_cas_port', u'line': u'sasenv_cas_port'}) 
+2020-06-03 14:06:46,019 p=17895 u=viyadep |  skipping: [localhost] => (item={u'regexp': u'#sasenv_connect_mgmt_port', u'line': u'sasenv_connect_mgmt_port'}) 
+2020-06-03 14:06:46,026 p=17895 u=viyadep |  skipping: [localhost] => (item={u'regexp': u'#sasenv_connect_port', u'line': u'sasenv_connect_port'}) 
+2020-06-03 14:06:46,032 p=17895 u=viyadep |  skipping: [localhost] => (item={u'regexp': u'#sasPort', u'line': u'sasPort'}) 
+2020-06-03 14:06:46,038 p=17895 u=viyadep |  skipping: [localhost] => (item={u'regexp': u'#sasstudio.appserver.https.port', u'line': u'sasstudio.appserver.https.port'}) 
+2020-06-03 14:06:46,044 p=17895 u=viyadep |  skipping: [localhost] => (item={u'regexp': u'#sasstudio.appserver.port', u'line': u'sasstudio.appserver.port'}) 
+2020-06-03 14:06:46,049 p=17895 u=viyadep |  skipping: [localhost] => (item={u'regexp': u'#SASV9_CONFIGURATION', u'line': u'SASV9_CONFIGURATION'}) 
+2020-06-03 14:06:46,056 p=17895 u=viyadep |  skipping: [localhost] => (item={u'regexp': u'#SERVICESBASEURL', u'line': u'SERVICESBASEURL'}) 
+2020-06-03 14:06:46,187 p=17895 u=viyadep |  ok: [localhost] => (item={u'regexp': u'#SPAWNER_CONFIGURATION', u'line': u'SPAWNER_CONFIGURATION'})
+2020-06-03 14:06:46,323 p=17895 u=viyadep |  ok: [localhost] => (item={u'regexp': u'#STUDIO_CONFIGURATION', u'line': u'STUDIO_CONFIGURATION'})
+2020-06-03 14:06:46,331 p=17895 u=viyadep |  skipping: [localhost] => (item={u'regexp': u'#webdms.workspaceServer.hostName', u'line': u'webdms.workspaceServer.hostName'}) 
+2020-06-03 14:06:46,339 p=17895 u=viyadep |  skipping: [localhost] => (item={u'regexp': u'#webdms.workspaceServer.port', u'line': u'webdms.workspaceServer.port'}) 
+2020-06-03 14:06:46,347 p=17895 u=viyadep |  skipping: [localhost] => (item={u'regexp': u'#WORKSPACESERVER_CONFIGURATION', u'line': u'WORKSPACESERVER_CONFIGURATION'}) 
+2020-06-03 14:06:46,375 p=17895 u=viyadep |  TASK [Uncomment the vars.yml properties temporarily in the merged folder to save the comments] *****************************************
+2020-06-03 14:06:46,524 p=17895 u=viyadep |  changed: [localhost] => (item={u'regexp': u'#sasenv_cas_host', u'line': u'sasenv_cas_host'})
+2020-06-03 14:06:46,660 p=17895 u=viyadep |  changed: [localhost] => (item={u'regexp': u'#sasenv_cas_port', u'line': u'sasenv_cas_port'})
+2020-06-03 14:06:46,790 p=17895 u=viyadep |  changed: [localhost] => (item={u'regexp': u'#sasenv_connect_mgmt_port', u'line': u'sasenv_connect_mgmt_port'})
+2020-06-03 14:06:46,923 p=17895 u=viyadep |  changed: [localhost] => (item={u'regexp': u'#sasenv_connect_port', u'line': u'sasenv_connect_port'})
+2020-06-03 14:06:46,947 p=17895 u=viyadep |  TASK [Uncomment the] *******************************************************************************************************************
+2020-06-03 14:06:46,968 p=17895 u=viyadep |  skipping: [localhost] => (item={u'regexp': u'#5: LD_LIBRARY_PATH', u'line': u'5: LD_LIBRARY_PATH'}) 
+2020-06-03 14:06:46,993 p=17895 u=viyadep |  TASK [Uncomment the] *******************************************************************************************************************
+2020-06-03 14:06:47,143 p=17895 u=viyadep |  changed: [localhost] => (item={u'regexp': u'#SERVICESBASEURL', u'line': u'SERVICESBASEURL'})
+2020-06-03 14:06:47,167 p=17895 u=viyadep |  TASK [Remove the SASV9_CONFIGURATION lines from the vars.yml file] *********************************************************************
+2020-06-03 14:06:47,308 p=17895 u=viyadep |  changed: [localhost] => (item=# Creates a workspaceserver sasv9_deployment.cfg file)
+2020-06-03 14:06:47,438 p=17895 u=viyadep |  changed: [localhost] => (item=#SASV9_CONFIGURATION:)
+2020-06-03 14:06:47,568 p=17895 u=viyadep |  changed: [localhost] => (item=  #1: '/* Comment about OPTION */')
+2020-06-03 14:06:47,700 p=17895 u=viyadep |  changed: [localhost] => (item=  #2: 'OPTION value')
+2020-06-03 14:06:47,727 p=17895 u=viyadep |  TASK [Remove the FOUNDATION_CONFIGURATION comments from the vars.yml file] *************************************************************
+2020-06-03 14:06:47,748 p=17895 u=viyadep |  skipping: [localhost] => (item=  #1: '# Comment about KEY') 
+2020-06-03 14:06:47,751 p=17895 u=viyadep |  skipping: [localhost] => (item=  #2: KEY=value) 
+2020-06-03 14:06:47,776 p=17895 u=viyadep |  TASK [Detect if backward merging is attempted] *****************************************************************************************
+2020-06-03 14:06:47,792 p=17895 u=viyadep |  skipping: [localhost]
+2020-06-03 14:06:47,816 p=17895 u=viyadep |  TASK [Perform deployment file merges] **************************************************************************************************
+2020-06-03 14:06:48,274 p=17895 u=viyadep |  ok: [localhost]
+2020-06-03 14:06:48,298 p=17895 u=viyadep |  TASK [Remove the --- line in the vars.yml file] ****************************************************************************************
+2020-06-03 14:06:48,430 p=17895 u=viyadep |  changed: [localhost]
+2020-06-03 14:06:48,457 p=17895 u=viyadep |  TASK [Insert the FOUNDATION_CONFIGURATION comments back to the vars.yml file] **********************************************************
+2020-06-03 14:06:48,479 p=17895 u=viyadep |  skipping: [localhost] => (item=  #2: KEY=value) 
+2020-06-03 14:06:48,488 p=17895 u=viyadep |  skipping: [localhost] => (item=  #1: '# Comment about KEY') 
+2020-06-03 14:06:48,514 p=17895 u=viyadep |  TASK [Insert the CAS_SETTINGS comments back to the vars.yml file] **********************************************************************
+2020-06-03 14:06:48,533 p=17895 u=viyadep |  skipping: [localhost] => (item=   #5: LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ORACLE_HOME/lib:$JAVA_HOME/lib/amd64/server:$ODBCHOME/lib) 
+2020-06-03 14:06:48,543 p=17895 u=viyadep |  skipping: [localhost] => (item=   #4: JAVA_HOME=/usr/lib/jvm/jre-1.8.0) 
+2020-06-03 14:06:48,545 p=17895 u=viyadep |  skipping: [localhost] => (item=   #3: ORACLE_HOME=Oracle home directory) 
+2020-06-03 14:06:48,550 p=17895 u=viyadep |  skipping: [localhost] => (item=   #2: ODBCINI=$ODBCHOME/odbc.ini) 
+2020-06-03 14:06:48,555 p=17895 u=viyadep |  skipping: [localhost] => (item=   #1: ODBCHOME=ODBC home directory) 
+2020-06-03 14:06:48,578 p=17895 u=viyadep |  TASK [Generate a cat merged_vars_yml stdout] *******************************************************************************************
+2020-06-03 14:06:48,763 p=17895 u=viyadep |  changed: [localhost]
+2020-06-03 14:06:48,788 p=17895 u=viyadep |  TASK [Insert the CAS_CONFIGURATION cfg section back to the vars.yml file] **************************************************************
+2020-06-03 14:06:48,949 p=17895 u=viyadep |  changed: [localhost] => (item={u'line': u"     #SERVICESBASEURL: 'https://loadbalancer.company.com'", u'prop': u'SERVICESBASEURL:'})
+2020-06-03 14:06:49,074 p=17895 u=viyadep |  changed: [localhost] => (item={u'line': u"     #colocation: 'none'", u'prop': u'colocation:'})
+2020-06-03 14:06:49,208 p=17895 u=viyadep |  changed: [localhost] => (item={u'line': u'     #port: 5570', u'prop': u'port:'})
+2020-06-03 14:06:49,340 p=17895 u=viyadep |  changed: [localhost] => (item={u'line': u'     #httpport: 8777', u'prop': u'httpport:'})
+2020-06-03 14:06:49,477 p=17895 u=viyadep |  changed: [localhost] => (item={u'line': u'     #gcport: 0', u'prop': u'gcport:'})
+2020-06-03 14:06:49,501 p=17895 u=viyadep |  TASK [Insert the SASV9_CONFIGURATION lines in the vars.yml file if they don' exist] ****************************************************
+2020-06-03 14:06:49,643 p=17895 u=viyadep |  changed: [localhost] => (item=# Creates a workspaceserver sasv9_deployment.cfg file)
+2020-06-03 14:06:49,769 p=17895 u=viyadep |  changed: [localhost] => (item=#SASV9_CONFIGURATION:)
+2020-06-03 14:06:49,896 p=17895 u=viyadep |  changed: [localhost] => (item=  #1: '/* Comment about OPTION */')
+2020-06-03 14:06:50,023 p=17895 u=viyadep |  changed: [localhost] => (item=  #2: 'OPTION value')
+2020-06-03 14:06:50,047 p=17895 u=viyadep |  TASK [Comment out the temporarily uncommented vars.yml properties in the merged folder] ************************************************
+2020-06-03 14:06:50,196 p=17895 u=viyadep |  changed: [localhost] => (item={u'regexp': u'sasenv_cas_host:', u'line': u'#sasenv_cas_host:'})
+2020-06-03 14:06:50,326 p=17895 u=viyadep |  changed: [localhost] => (item={u'regexp': u'sasenv_cas_port:', u'line': u'#sasenv_cas_port:'})
+2020-06-03 14:06:50,454 p=17895 u=viyadep |  changed: [localhost] => (item={u'regexp': u'sasenv_connect_mgmt_port:', u'line': u'#sasenv_connect_mgmt_port:'})
+2020-06-03 14:06:50,582 p=17895 u=viyadep |  changed: [localhost] => (item={u'regexp': u'sasenv_connect_port:', u'line': u'#sasenv_connect_port:'})
+2020-06-03 14:06:50,608 p=17895 u=viyadep |  TASK [Insert the CAS_SETTINGS comments back to the vars.yml file] **********************************************************************
+2020-06-03 14:06:50,753 p=17895 u=viyadep |  changed: [localhost] => (item=
+##########################################################)
+2020-06-03 14:06:50,883 p=17895 u=viyadep |  changed: [localhost] => (item=## Foundation Configuration)
+2020-06-03 14:06:51,009 p=17895 u=viyadep |  changed: [localhost] => (item=##########################################################
+)
+2020-06-03 14:06:51,033 p=17895 u=viyadep |  TASK [Remove the original inventory file from the merged_folder directory] *************************************************************
+2020-06-03 14:06:51,172 p=17895 u=viyadep |  changed: [localhost]
+2020-06-03 14:06:51,197 p=17895 u=viyadep |  TASK [Check whether the cpsdatasvrc property exists in the current inventory file] *****************************************************
+2020-06-03 14:06:51,339 p=17895 u=viyadep |  ok: [localhost]
+2020-06-03 14:06:51,363 p=17895 u=viyadep |  TASK [Find the CommonPlanningService Invocation variables] *****************************************************************************
+2020-06-03 14:06:51,382 p=17895 u=viyadep |  ok: [localhost]
+2020-06-03 14:06:51,406 p=17895 u=viyadep |  TASK [Move CommonPlanningService Invocation variables to INVOCATION_VARIABLES] *********************************************************
+2020-06-03 14:06:51,423 p=17895 u=viyadep |  skipping: [localhost]
+2020-06-03 14:06:51,447 p=17895 u=viyadep |  TASK [Move CommonPlanningService Invocation variables to INVOCATION_VARIABLES] *********************************************************
+2020-06-03 14:06:51,464 p=17895 u=viyadep |  skipping: [localhost]
+2020-06-03 14:06:51,488 p=17895 u=viyadep |  TASK [Move CommonPlanningService Invocation variables to INVOCATION_VARIABLES] *********************************************************
+2020-06-03 14:06:51,504 p=17895 u=viyadep |  skipping: [localhost]
+2020-06-03 14:06:51,528 p=17895 u=viyadep |  TASK [Move CommonPlanningService Invocation variables to INVOCATION_VARIABLES] *********************************************************
+2020-06-03 14:06:51,546 p=17895 u=viyadep |  skipping: [localhost]
+2020-06-03 14:06:51,570 p=17895 u=viyadep |  TASK [Check whether the NODE_TYPE property exists in the merged vars.yml] **************************************************************
+2020-06-03 14:06:51,717 p=17895 u=viyadep |  changed: [localhost]
+2020-06-03 14:06:51,741 p=17895 u=viyadep |  TASK [Remove the NODE_TYPE line from the vars.yml file] ********************************************************************************
+2020-06-03 14:06:51,889 p=17895 u=viyadep |  changed: [localhost]
+2020-06-03 14:06:51,912 p=17895 u=viyadep |  TASK [Replace the old pgpools property with a new one in the merged vars.yml] **********************************************************
+2020-06-03 14:06:52,049 p=17895 u=viyadep |  changed: [localhost]
+2020-06-03 14:06:52,073 p=17895 u=viyadep |  TASK [Make sure all host groups include an underscore instead of a hyphen] *************************************************************
+2020-06-03 14:06:52,213 p=17895 u=viyadep |  ok: [localhost] => (item={u'regexp': u'sas-all:children', u'line': u'sas_all:children'})
+2020-06-03 14:06:52,342 p=17895 u=viyadep |  ok: [localhost] => (item={u'regexp': u'sas-casserver-primary', u'line': u'sas_casserver_primary'})
+2020-06-03 14:06:52,467 p=17895 u=viyadep |  ok: [localhost] => (item={u'regexp': u'sas-casserver-worker', u'line': u'sas_casserver_worker'})
+2020-06-03 14:06:52,605 p=17895 u=viyadep |  ok: [localhost] => (item={u'regexp': u'sas-casserver-secondary', u'line': u'sas_casserver_secondary'})
+2020-06-03 14:06:52,629 p=17895 u=viyadep |  TASK [Check if the host_vars folder exists in the current playbook folder] *************************************************************
+2020-06-03 14:06:52,763 p=17895 u=viyadep |  ok: [localhost]
+2020-06-03 14:06:52,786 p=17895 u=viyadep |  TASK [Copy the host_vars folder to the merged folder] **********************************************************************************
+2020-06-03 14:06:52,802 p=17895 u=viyadep |  skipping: [localhost]
+2020-06-03 14:06:52,826 p=17895 u=viyadep |  TASK [Check if the file sitedefault.yml exists in the <current playbook folder>/roles/consul/files folder] *****************************
+2020-06-03 14:06:52,958 p=17895 u=viyadep |  ok: [localhost]
+2020-06-03 14:06:52,983 p=17895 u=viyadep |  TASK [Copy the sitedefault.yml to the merged folder when the file exists] **************************************************************
+2020-06-03 14:06:52,997 p=17895 u=viyadep |  skipping: [localhost]
+2020-06-03 14:06:53,020 p=17895 u=viyadep |  TASK [Show the differences between the original and new configuration files] ***********************************************************
+2020-06-03 14:06:53,211 p=17895 u=viyadep |  changed: [localhost] => (item={u'current': u'/home/viyadep/Viya3.5/upgrade/playbook-3.4/inventory.ini', u'new': u'/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/viya-ark/playbooks/merge-playbook/merged_files/20200603-140639/inventory.ini', u'filename': u'inventory_diff.txt'})
+2020-06-03 14:06:53,377 p=17895 u=viyadep |  changed: [localhost] => (item={u'current': u'/home/viyadep/Viya3.5/upgrade/playbook-3.4/ansible.cfg', u'new': u'/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/viya-ark/playbooks/merge-playbook/merged_files/20200603-140639/ansible.cfg', u'filename': u'ansible_cfg_diff.txt'})
+2020-06-03 14:06:53,545 p=17895 u=viyadep |  changed: [localhost] => (item={u'current': u'/home/viyadep/Viya3.5/upgrade/playbook-3.4/vars.yml', u'new': u'/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/viya-ark/playbooks/merge-playbook/merged_files/20200603-140639/vars.yml', u'filename': u'vars_yml_diff.txt'})
+2020-06-03 14:06:53,570 p=17895 u=viyadep |  TASK [Show the differences between the original and new tenant configuration files] ****************************************************
+2020-06-03 14:06:53,597 p=17895 u=viyadep |  skipping: [localhost]
+2020-06-03 14:06:53,625 p=17895 u=viyadep |  TASK [debug] ***************************************************************************************************************************
+2020-06-03 14:06:53,642 p=17895 u=viyadep |  ok: [localhost] => {
+    "msg": "To review the differences between the original and new configuration files, open the files named filename_diff.txt in /home/viyadep/Viya3.5/upgrade/sas_viya_playbook/viya-ark/playbooks/merge-playbook/merged_files/20200603-140639."
+}
+2020-06-03 14:06:53,666 p=17895 u=viyadep |  TASK [Check whether user action is needed for inventory.ini] ***************************************************************************
+2020-06-03 14:06:53,848 p=17895 u=viyadep |  changed: [localhost]
+2020-06-03 14:06:53,872 p=17895 u=viyadep |  TASK [Check whether user action is needed for vars.yml] ********************************************************************************
+2020-06-03 14:06:54,052 p=17895 u=viyadep |  changed: [localhost]
+2020-06-03 14:06:54,077 p=17895 u=viyadep |  TASK [pause] ***************************************************************************************************************************
+2020-06-03 14:06:54,093 p=17895 u=viyadep |  skipping: [localhost]
+2020-06-03 14:06:54,118 p=17895 u=viyadep |  TASK [pause] ***************************************************************************************************************************
+2020-06-03 14:06:54,133 p=17895 u=viyadep |  skipping: [localhost]
+2020-06-03 14:06:54,134 p=17895 u=viyadep |  PLAY RECAP *****************************************************************************************************************************
+2020-06-03 14:06:54,135 p=17895 u=viyadep |  localhost                  : ok=54   changed=24   unreachable=0    failed=0    skipped=24   rescued=0    ignored=0   
+2020-06-03 15:40:25,533 p=123938 u=viyadep |   [WARNING]: Skipping plugin (/usr/lib/python2.7/site-packages/ansible/plugins/connection/accelerate.py) as it seems
+to be invalid: cannot import name key_for_hostname
+
+2020-06-03 15:40:25,880 p=123938 u=viyadep |  PLAY [sas_all] *****************************************************************************************************
+2020-06-03 15:40:28,642 p=123938 u=viyadep |  TASK [Gathering Facts] *********************************************************************************************
+2020-06-03 15:40:28,646 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:28,650 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:28,681 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:40:28,780 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:28,787 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:40:31,237 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:31,301 p=123938 u=viyadep |  TASK [set_fact] ****************************************************************************************************
+2020-06-03 15:40:31,301 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:40:31,329 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:40:31,356 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:31,384 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:31,412 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:31,424 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:31,429 p=123938 u=viyadep |  PLAY [Set assessment machine facts] ********************************************************************************
+2020-06-03 15:40:33,324 p=123938 u=viyadep |  TASK [Gathering Facts] *********************************************************************************************
+2020-06-03 15:40:33,324 p=123938 u=viyadep |  ok: [localhost]
+2020-06-03 15:40:33,383 p=123938 u=viyadep |  TASK [Set VERIFY_DEPLOYENT fact] ***********************************************************************************
+2020-06-03 15:40:33,384 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:40:33,413 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:40:33,440 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:33,469 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:33,500 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:33,527 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:33,539 p=123938 u=viyadep |  ok: [localhost]
+2020-06-03 15:40:33,544 p=123938 u=viyadep |  PLAY [Verify third-party requirements] *****************************************************************************
+2020-06-03 15:40:33,669 p=123938 u=viyadep |  TASK [Halt execution on any third-party assessment check failures] *************************************************
+2020-06-03 15:40:33,669 p=123938 u=viyadep |  ok: [localhost]
+2020-06-03 15:40:33,709 p=123938 u=viyadep |  TASK [Verify we are not running check mode] ************************************************************************
+2020-06-03 15:40:33,710 p=123938 u=viyadep |  ok: [localhost]
+2020-06-03 15:40:33,714 p=123938 u=viyadep |  PLAY [Gather additional host facts] ********************************************************************************
+2020-06-03 15:40:34,545 p=123938 u=viyadep |  TASK [Calling add_repository_build_type] ***************************************************************************
+2020-06-03 15:40:34,546 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:34,557 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:34,613 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:40:34,624 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:34,643 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:40:35,014 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:35,083 p=123938 u=viyadep |   [WARNING]: Invalid characters were found in group names but not replaced, use -vvvv to see details
+
+2020-06-03 15:40:35,084 p=123938 u=viyadep |  TASK [Create host groups according to the repository build type] ***************************************************
+2020-06-03 15:40:35,084 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:40:35,112 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:40:35,142 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:35,171 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:35,200 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:35,211 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:35,807 p=123938 u=viyadep |  TASK [Calling gather_additional_host_facts] ************************************************************************
+2020-06-03 15:40:35,807 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:35,818 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:35,851 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:35,948 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:40:35,967 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:40:36,226 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:36,301 p=123938 u=viyadep |  TASK [Set internal_deployment_ipv4_override into sas_vars when not defined or empty string] ************************
+2020-06-03 15:40:36,302 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:40:36,334 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:40:36,365 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:36,400 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:36,439 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:36,463 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:36,734 p=123938 u=viyadep |  TASK [Set internal_deployment_ipv4 into sas_vars when the override is not defined] *********************************
+2020-06-03 15:40:36,734 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:40:36,766 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:40:36,798 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:36,829 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:36,858 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:36,877 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:37,149 p=123938 u=viyadep |  TASK [Set self_deployment_ipv4_override into sas_vars when not defined or empty string] ****************************
+2020-06-03 15:40:37,150 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:40:37,186 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:40:37,219 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:37,251 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:37,282 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:37,300 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:37,578 p=123938 u=viyadep |  TASK [Set self_deployment_ipv4 into sas_vars when the override is not defined] *************************************
+2020-06-03 15:40:37,578 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:40:37,611 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:40:37,652 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:37,680 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:37,718 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:37,736 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:38,502 p=123938 u=viyadep |  TASK [Get host-contextual consul URL] ******************************************************************************
+2020-06-03 15:40:38,503 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:38,520 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:40:38,521 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:38,549 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:40:38,555 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:38,841 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:38,911 p=123938 u=viyadep |  TASK [Add consul URL to sas_vars dictionary] ***********************************************************************
+2020-06-03 15:40:38,911 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:40:38,944 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:40:38,976 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:39,008 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:39,045 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:39,117 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:39,333 p=123938 u=viyadep |  TASK [Collect hosts that have sas_vars dictionary defined] *********************************************************
+2020-06-03 15:40:39,334 p=123938 u=viyadep |  ok: [deployTarget] => (item=deployTarget)
+2020-06-03 15:40:39,334 p=123938 u=viyadep |  ok: [deployTarget] => (item=micro2)
+2020-06-03 15:40:39,335 p=123938 u=viyadep |  ok: [micro2] => (item=deployTarget)
+2020-06-03 15:40:39,335 p=123938 u=viyadep |  ok: [deployTarget] => (item=controller1)
+2020-06-03 15:40:39,415 p=123938 u=viyadep |  ok: [micro2] => (item=micro2)
+2020-06-03 15:40:39,416 p=123938 u=viyadep |  ok: [deployTarget] => (item=controller2)
+2020-06-03 15:40:39,417 p=123938 u=viyadep |  ok: [micro2] => (item=controller1)
+2020-06-03 15:40:39,417 p=123938 u=viyadep |  ok: [controller1] => (item=deployTarget)
+2020-06-03 15:40:39,417 p=123938 u=viyadep |  ok: [deployTarget] => (item=worker1)
+2020-06-03 15:40:39,418 p=123938 u=viyadep |  ok: [controller1] => (item=micro2)
+2020-06-03 15:40:39,418 p=123938 u=viyadep |  ok: [worker1] => (item=deployTarget)
+2020-06-03 15:40:39,418 p=123938 u=viyadep |  ok: [controller2] => (item=deployTarget)
+2020-06-03 15:40:39,419 p=123938 u=viyadep |  ok: [micro2] => (item=controller2)
+2020-06-03 15:40:39,419 p=123938 u=viyadep |  ok: [controller2] => (item=micro2)
+2020-06-03 15:40:39,419 p=123938 u=viyadep |  ok: [deployTarget] => (item=worker2)
+2020-06-03 15:40:39,423 p=123938 u=viyadep |  ok: [controller1] => (item=controller1)
+2020-06-03 15:40:39,424 p=123938 u=viyadep |  ok: [micro2] => (item=worker1)
+2020-06-03 15:40:39,433 p=123938 u=viyadep |  ok: [worker1] => (item=micro2)
+2020-06-03 15:40:39,434 p=123938 u=viyadep |  ok: [controller1] => (item=controller2)
+2020-06-03 15:40:39,437 p=123938 u=viyadep |  ok: [controller2] => (item=controller1)
+2020-06-03 15:40:39,448 p=123938 u=viyadep |  ok: [worker1] => (item=controller1)
+2020-06-03 15:40:39,451 p=123938 u=viyadep |  ok: [micro2] => (item=worker2)
+2020-06-03 15:40:39,456 p=123938 u=viyadep |  ok: [controller2] => (item=controller2)
+2020-06-03 15:40:39,463 p=123938 u=viyadep |  ok: [worker2] => (item=deployTarget)
+2020-06-03 15:40:39,463 p=123938 u=viyadep |  ok: [controller1] => (item=worker1)
+2020-06-03 15:40:39,479 p=123938 u=viyadep |  ok: [worker1] => (item=controller2)
+2020-06-03 15:40:39,483 p=123938 u=viyadep |  ok: [controller2] => (item=worker1)
+2020-06-03 15:40:39,492 p=123938 u=viyadep |  ok: [controller1] => (item=worker2)
+2020-06-03 15:40:39,496 p=123938 u=viyadep |  ok: [worker2] => (item=micro2)
+2020-06-03 15:40:39,512 p=123938 u=viyadep |  ok: [worker1] => (item=worker1)
+2020-06-03 15:40:39,513 p=123938 u=viyadep |  ok: [controller2] => (item=worker2)
+2020-06-03 15:40:39,527 p=123938 u=viyadep |  ok: [worker2] => (item=controller1)
+2020-06-03 15:40:39,539 p=123938 u=viyadep |  ok: [worker1] => (item=worker2)
+2020-06-03 15:40:39,558 p=123938 u=viyadep |  ok: [worker2] => (item=controller2)
+2020-06-03 15:40:39,589 p=123938 u=viyadep |  ok: [worker2] => (item=worker1)
+2020-06-03 15:40:39,621 p=123938 u=viyadep |  ok: [worker2] => (item=worker2)
+2020-06-03 15:40:39,688 p=123938 u=viyadep |  TASK [Determine if any host participating in the deployment is missing the required sas_vars dictionary] ***********
+2020-06-03 15:40:39,688 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:40:39,718 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:40:39,750 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:39,782 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:39,812 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:39,823 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:39,890 p=123938 u=viyadep |  TASK [Report if a host participating in the deployment is missing the sas_vars dictionary] *************************
+2020-06-03 15:40:39,891 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:40:39,922 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:40:39,952 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:39,982 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:40,013 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:40,028 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:40,034 p=123938 u=viyadep |  PLAY [Validate user-defined input] *********************************************************************************
+2020-06-03 15:40:40,082 p=123938 u=viyadep |  TASK [set_fact] ****************************************************************************************************
+2020-06-03 15:40:40,083 p=123938 u=viyadep |  ok: [localhost]
+2020-06-03 15:40:40,128 p=123938 u=viyadep |  TASK [Verify DEPLOYMENT_LABEL is a string] *************************************************************************
+2020-06-03 15:40:40,129 p=123938 u=viyadep |  ok: [localhost]
+2020-06-03 15:40:40,217 p=123938 u=viyadep |  TASK [Verify DEPLOYMENT_LABEL is valid] ****************************************************************************
+2020-06-03 15:40:40,217 p=123938 u=viyadep |  ok: [localhost]
+2020-06-03 15:40:40,549 p=123938 u=viyadep |  TASK [Verify sitedefault.yml is valid YAML] ************************************************************************
+2020-06-03 15:40:40,550 p=123938 u=viyadep |  ok: [localhost]
+2020-06-03 15:40:40,634 p=123938 u=viyadep |  TASK [Validate CAS controller host is defined when necessary] ******************************************************
+2020-06-03 15:40:40,634 p=123938 u=viyadep |  ok: [localhost]
+2020-06-03 15:40:40,678 p=123938 u=viyadep |  PLAY [Validate hosts] **********************************************************************************************
+2020-06-03 15:40:40,747 p=123938 u=viyadep |  TASK [set_fact] ****************************************************************************************************
+2020-06-03 15:40:40,747 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:40:40,781 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:40:40,812 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:40,841 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:40,872 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:40,885 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:40,952 p=123938 u=viyadep |  TASK [Perform fully qualified domain name length validation] *******************************************************
+2020-06-03 15:40:40,952 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:40:40,981 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:40:41,011 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:41,042 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:41,072 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:41,088 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:42,550 p=123938 u=viyadep |  TASK [Perform host connection checks] ******************************************************************************
+2020-06-03 15:40:42,550 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:42,553 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:40:42,556 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:42,560 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:42,633 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:40:43,735 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:44,008 p=123938 u=viyadep |  TASK [Add host connection results to stored data] ******************************************************************
+2020-06-03 15:40:44,008 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:40:44,039 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:40:44,072 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:44,105 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:44,138 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:44,156 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:46,659 p=123938 u=viyadep |  TASK [Ensure host address resolution alignment] ********************************************************************
+2020-06-03 15:40:46,659 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:47,016 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:40:47,180 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:47,339 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:47,500 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:40:48,561 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:48,906 p=123938 u=viyadep |  TASK [Perform no_proxy environment variable check] *****************************************************************
+2020-06-03 15:40:48,906 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:40:48,937 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:40:48,971 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:49,005 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:49,037 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:49,056 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:49,275 p=123938 u=viyadep |  PLAY [Summarize pre-flight check status] ***************************************************************************
+2020-06-03 15:40:49,344 p=123938 u=viyadep |  TASK [Identify any pre-flight check failures] **********************************************************************
+2020-06-03 15:40:49,344 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:40:49,375 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:40:49,406 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:49,435 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:49,513 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:49,541 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:49,577 p=123938 u=viyadep |  ok: [localhost]
+2020-06-03 15:40:49,584 p=123938 u=viyadep |  PLAY [Check user accounts required by the playbook] ****************************************************************
+2020-06-03 15:40:50,082 p=123938 u=viyadep |  TASK [Verify that sas user exists] *********************************************************************************
+2020-06-03 15:40:50,082 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:50,089 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:40:50,094 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:40:50,105 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:50,128 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:50,356 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:51,016 p=123938 u=viyadep |  TASK [Verify that sas user is a member of the group sas] ***********************************************************
+2020-06-03 15:40:51,017 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:40:51,035 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:40:51,092 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:51,096 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:51,164 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:51,412 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:51,490 p=123938 u=viyadep |  TASK [Verify that sas user is a member of the group sas] ***********************************************************
+2020-06-03 15:40:51,490 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:40:51,523 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:40:51,554 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:51,586 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:51,619 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:51,641 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:51,648 p=123938 u=viyadep |  PLAY [Check for unsupported tags] **********************************************************************************
+2020-06-03 15:40:51,715 p=123938 u=viyadep |  TASK [Check if any tags are in scope] ******************************************************************************
+2020-06-03 15:40:51,715 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:40:51,745 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:40:51,777 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:51,807 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:51,839 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:51,848 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:52,259 p=123938 u=viyadep |  PLAY [Validate existence of cas user, group membership, and the consistency of IDs] ********************************
+2020-06-03 15:40:52,840 p=123938 u=viyadep |  TASK [Create CAS cluster definition file] **************************************************************************
+2020-06-03 15:40:52,840 p=123938 u=viyadep |  changed: [controller2]
+2020-06-03 15:40:52,842 p=123938 u=viyadep |  changed: [worker2]
+2020-06-03 15:40:52,842 p=123938 u=viyadep |  changed: [controller1]
+2020-06-03 15:40:52,845 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:52,908 p=123938 u=viyadep |  TASK [include /home/viyadep/Viya3.5/upgrade/sas_viya_playbook/cluster_defn_vars.yml] *******************************
+2020-06-03 15:40:52,909 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:52,939 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:52,972 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:52,989 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:53,049 p=123938 u=viyadep |  TASK [If CLUSTER_DEFINITIONS.cas is not empty, copy contents] ******************************************************
+2020-06-03 15:40:53,050 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:53,081 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:53,113 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:53,135 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:53,539 p=123938 u=viyadep |  included: /home/viyadep/Viya3.5/upgrade/sas_viya_playbook/tasks/check_user.yml for controller1, controller2, worker1, worker2
+2020-06-03 15:40:53,900 p=123938 u=viyadep |  TASK [Verify that cas user exists] *********************************************************************************
+2020-06-03 15:40:53,900 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:53,905 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:53,927 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:53,949 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:54,011 p=123938 u=viyadep |  TASK [Verify that cas user exists] *********************************************************************************
+2020-06-03 15:40:54,011 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:54,043 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:54,075 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:54,095 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:54,514 p=123938 u=viyadep |  TASK [Verify that cas user is a member of the group sas] ***********************************************************
+2020-06-03 15:40:54,514 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:54,527 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:54,567 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:54,615 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:54,679 p=123938 u=viyadep |  TASK [Verify that cas user is a member of the group sas] ***********************************************************
+2020-06-03 15:40:54,679 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:54,710 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:54,742 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:54,764 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:55,024 p=123938 u=viyadep |  included: /home/viyadep/Viya3.5/upgrade/sas_viya_playbook/tasks/check_user.yml for controller1, controller2, worker1, worker2
+2020-06-03 15:40:55,390 p=123938 u=viyadep |  TASK [Verify that cas user exists] *********************************************************************************
+2020-06-03 15:40:55,391 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:55,402 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:55,437 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:55,459 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:55,521 p=123938 u=viyadep |  TASK [Verify that cas user exists] *********************************************************************************
+2020-06-03 15:40:55,522 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:55,552 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:55,582 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:55,603 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:55,944 p=123938 u=viyadep |  TASK [Verify that cas user is a member of the group sas] ***********************************************************
+2020-06-03 15:40:55,944 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:55,961 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:56,027 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:56,058 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:56,120 p=123938 u=viyadep |  TASK [Verify that cas user is a member of the group sas] ***********************************************************
+2020-06-03 15:40:56,121 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:56,154 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:56,188 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:56,218 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:56,476 p=123938 u=viyadep |  included: /home/viyadep/Viya3.5/upgrade/sas_viya_playbook/tasks/cas_check_id_consistency.yml for controller1, controller2, worker1, worker2
+2020-06-03 15:40:56,915 p=123938 u=viyadep |  TASK [Get user IDs] ************************************************************************************************
+2020-06-03 15:40:56,916 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:56,923 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:56,930 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:56,934 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:57,073 p=123938 u=viyadep |  TASK [Verify user ID consistency] **********************************************************************************
+2020-06-03 15:40:57,074 p=123938 u=viyadep |  ok: [controller1] => (item=controller2)
+2020-06-03 15:40:57,104 p=123938 u=viyadep |  ok: [controller2] => (item=controller1)
+2020-06-03 15:40:57,134 p=123938 u=viyadep |  ok: [worker1] => (item=controller1)
+2020-06-03 15:40:57,169 p=123938 u=viyadep |  ok: [worker2] => (item=controller1)
+2020-06-03 15:40:57,196 p=123938 u=viyadep |  ok: [controller1] => (item=worker1)
+2020-06-03 15:40:57,223 p=123938 u=viyadep |  ok: [controller2] => (item=worker1)
+2020-06-03 15:40:57,228 p=123938 u=viyadep |  ok: [worker1] => (item=controller2)
+2020-06-03 15:40:57,269 p=123938 u=viyadep |  ok: [worker2] => (item=controller2)
+2020-06-03 15:40:57,314 p=123938 u=viyadep |  ok: [controller1] => (item=worker2)
+2020-06-03 15:40:57,335 p=123938 u=viyadep |  ok: [controller2] => (item=worker2)
+2020-06-03 15:40:57,341 p=123938 u=viyadep |  ok: [worker1] => (item=worker2)
+2020-06-03 15:40:57,388 p=123938 u=viyadep |  ok: [worker2] => (item=worker1)
+2020-06-03 15:40:57,716 p=123938 u=viyadep |  TASK [Get group IDs] ***********************************************************************************************
+2020-06-03 15:40:57,717 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:57,751 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:57,756 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:57,823 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:57,959 p=123938 u=viyadep |  TASK [Verify group ID consistency] *********************************************************************************
+2020-06-03 15:40:57,960 p=123938 u=viyadep |  ok: [controller1] => (item=controller2)
+2020-06-03 15:40:58,008 p=123938 u=viyadep |  ok: [controller2] => (item=controller1)
+2020-06-03 15:40:58,031 p=123938 u=viyadep |  ok: [worker1] => (item=controller1)
+2020-06-03 15:40:58,071 p=123938 u=viyadep |  ok: [controller1] => (item=worker1)
+2020-06-03 15:40:58,099 p=123938 u=viyadep |  ok: [worker2] => (item=controller1)
+2020-06-03 15:40:58,123 p=123938 u=viyadep |  ok: [worker1] => (item=controller2)
+2020-06-03 15:40:58,126 p=123938 u=viyadep |  ok: [controller2] => (item=worker1)
+2020-06-03 15:40:58,190 p=123938 u=viyadep |  ok: [worker2] => (item=controller2)
+2020-06-03 15:40:58,208 p=123938 u=viyadep |  ok: [controller1] => (item=worker2)
+2020-06-03 15:40:58,243 p=123938 u=viyadep |  ok: [worker1] => (item=worker2)
+2020-06-03 15:40:58,244 p=123938 u=viyadep |  ok: [controller2] => (item=worker2)
+2020-06-03 15:40:58,312 p=123938 u=viyadep |  ok: [worker2] => (item=worker1)
+2020-06-03 15:40:58,319 p=123938 u=viyadep |  PLAY [Validate CAS Admin User and cas_provlist] ********************************************************************
+2020-06-03 15:40:58,751 p=123938 u=viyadep |  TASK [casserver-validate : If CLUSTER_DEFINITIONS.cas is not empty, copy contents] *********************************
+2020-06-03 15:40:58,751 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:40:58,783 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:40:58,814 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:40:58,831 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:40:59,139 p=123938 u=viyadep |  PLAY [Validate CAS host] *******************************************************************************************
+2020-06-03 15:40:59,211 p=123938 u=viyadep |  TASK [include_vars] ************************************************************************************************
+2020-06-03 15:40:59,212 p=123938 u=viyadep |  ok: [deployTarget] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:40:59,239 p=123938 u=viyadep |  ok: [micro2] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:40:59,401 p=123938 u=viyadep |  TASK [foundation-validate : Set CAS host] **************************************************************************
+2020-06-03 15:40:59,402 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:40:59,440 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:40:59,511 p=123938 u=viyadep |  TASK [foundation-validate : Assert that controller host is set] ****************************************************
+2020-06-03 15:40:59,511 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:40:59,527 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:40:59,533 p=123938 u=viyadep |  PLAY [Validate PostgreSQL user-modifiable entries in inventory.ini and vars.yml] ***********************************
+2020-06-03 15:40:59,606 p=123938 u=viyadep |  TASK [include_vars] ************************************************************************************************
+2020-06-03 15:40:59,606 p=123938 u=viyadep |  ok: [deployTarget] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:40:59,640 p=123938 u=viyadep |  ok: [micro2] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:40:59,674 p=123938 u=viyadep |  ok: [controller1] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:40:59,707 p=123938 u=viyadep |  ok: [controller2] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:40:59,740 p=123938 u=viyadep |  ok: [worker1] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:40:59,760 p=123938 u=viyadep |  ok: [worker2] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:41:00,221 p=123938 u=viyadep |  TASK [validate-postgres-rules : jinja_version] *********************************************************************
+2020-06-03 15:41:00,221 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:41:00,511 p=123938 u=viyadep |  TASK [validate-postgres-rules : Verify that the specified host groups in vars.yml are valid] ***********************
+2020-06-03 15:41:00,512 p=123938 u=viyadep |  ok: [deployTarget] => (item=sasdatasvrc) => {
+    "ansible_loop_var": "item", 
+    "changed": false, 
+    "item": "sasdatasvrc", 
+    "msg": "All assertions passed"
+}
+2020-06-03 15:41:00,518 p=123938 u=viyadep |  ok: [deployTarget] => (item=pgpoolc) => {
+    "ansible_loop_var": "item", 
+    "changed": false, 
+    "item": "pgpoolc", 
+    "msg": "All assertions passed"
+}
+2020-06-03 15:41:00,589 p=123938 u=viyadep |  TASK [validate-postgres-rules : Verify that the specified host group sasdatasvrc in vars.yml matches the entry in the inventory file] ***
+2020-06-03 15:41:00,590 p=123938 u=viyadep |  ok: [deployTarget] => (item={'value': {u'sasdatasvrc': [{u'SANMOUNT': u'/opt/sas/viya/config/data/sasdatasvrc', u'NODE_NUMBER': u'0', u'PG_PORT': u'5432', u'SERVICE_NAME': u'postgres'}], u'pgpoolc': [{u'HA_PGPOOL_WATCHDOG_PORT': u'', u'PCP_PORT': u'5430', u'SANMOUNT': u'/opt/sas/viya/config/data/sasdatasvrc', u'SERVICE_NAME': u'postgres', u'HA_PGPOOL_VIRTUAL_IP': u'', u'POOL_NUMBER': u'0', u'PGPOOL_PORT': u'5431'}]}, 'key': u'deployTarget'}) => {
+    "ansible_loop_var": "item", 
+    "changed": false, 
+    "item": {
+        "key": "deployTarget", 
+        "value": {
+            "pgpoolc": [
+                {
+                    "HA_PGPOOL_VIRTUAL_IP": "", 
+                    "HA_PGPOOL_WATCHDOG_PORT": "", 
+                    "PCP_PORT": "5430", 
+                    "PGPOOL_PORT": "5431", 
+                    "POOL_NUMBER": "0", 
+                    "SANMOUNT": "/opt/sas/viya/config/data/sasdatasvrc", 
+                    "SERVICE_NAME": "postgres"
+                }
+            ], 
+            "sasdatasvrc": [
+                {
+                    "NODE_NUMBER": "0", 
+                    "PG_PORT": "5432", 
+                    "SANMOUNT": "/opt/sas/viya/config/data/sasdatasvrc", 
+                    "SERVICE_NAME": "postgres"
+                }
+            ]
+        }
+    }, 
+    "msg": "All assertions passed"
+}
+2020-06-03 15:41:00,671 p=123938 u=viyadep |  TASK [validate-postgres-rules : Verify that the specified host group pgpoolc in vars.yml matches the entry in the inventory file] ***
+2020-06-03 15:41:00,672 p=123938 u=viyadep |  ok: [deployTarget] => (item={'value': {u'sasdatasvrc': [{u'SANMOUNT': u'/opt/sas/viya/config/data/sasdatasvrc', u'NODE_NUMBER': u'0', u'PG_PORT': u'5432', u'SERVICE_NAME': u'postgres'}], u'pgpoolc': [{u'HA_PGPOOL_WATCHDOG_PORT': u'', u'PCP_PORT': u'5430', u'SANMOUNT': u'/opt/sas/viya/config/data/sasdatasvrc', u'SERVICE_NAME': u'postgres', u'HA_PGPOOL_VIRTUAL_IP': u'', u'POOL_NUMBER': u'0', u'PGPOOL_PORT': u'5431'}]}, 'key': u'deployTarget'}) => {
+    "ansible_loop_var": "item", 
+    "changed": false, 
+    "item": {
+        "key": "deployTarget", 
+        "value": {
+            "pgpoolc": [
+                {
+                    "HA_PGPOOL_VIRTUAL_IP": "", 
+                    "HA_PGPOOL_WATCHDOG_PORT": "", 
+                    "PCP_PORT": "5430", 
+                    "PGPOOL_PORT": "5431", 
+                    "POOL_NUMBER": "0", 
+                    "SANMOUNT": "/opt/sas/viya/config/data/sasdatasvrc", 
+                    "SERVICE_NAME": "postgres"
+                }
+            ], 
+            "sasdatasvrc": [
+                {
+                    "NODE_NUMBER": "0", 
+                    "PG_PORT": "5432", 
+                    "SANMOUNT": "/opt/sas/viya/config/data/sasdatasvrc", 
+                    "SERVICE_NAME": "postgres"
+                }
+            ]
+        }
+    }, 
+    "msg": "All assertions passed"
+}
+2020-06-03 15:41:00,736 p=123938 u=viyadep |  TASK [validate-postgres-rules : set_fact] **************************************************************************
+2020-06-03 15:41:00,736 p=123938 u=viyadep |  ok: [deployTarget] => (item=deployTarget)
+2020-06-03 15:41:00,791 p=123938 u=viyadep |  TASK [validate-postgres-rules : set_fact] **************************************************************************
+2020-06-03 15:41:00,791 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:41:00,855 p=123938 u=viyadep |  TASK [validate-postgres-rules : set_fact] **************************************************************************
+2020-06-03 15:41:00,855 p=123938 u=viyadep |  ok: [deployTarget] => (item=deployTarget)
+2020-06-03 15:41:00,919 p=123938 u=viyadep |  TASK [validate-postgres-rules : set_fact] **************************************************************************
+2020-06-03 15:41:00,919 p=123938 u=viyadep |  ok: [deployTarget] => (item=deployTarget)
+2020-06-03 15:41:00,968 p=123938 u=viyadep |  TASK [validate-postgres-rules : set_fact] **************************************************************************
+2020-06-03 15:41:00,969 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:41:01,026 p=123938 u=viyadep |  TASK [validate-postgres-rules : set_fact] **************************************************************************
+2020-06-03 15:41:01,026 p=123938 u=viyadep |  ok: [deployTarget] => (item=sasdatasvrc)
+2020-06-03 15:41:01,031 p=123938 u=viyadep |  ok: [deployTarget] => (item=pgpoolc)
+2020-06-03 15:41:01,093 p=123938 u=viyadep |  TASK [validate-postgres-rules : Retrieve the PG_PORT port number defined for sasdatasvrc from vars.yml] ************
+2020-06-03 15:41:01,094 p=123938 u=viyadep |  ok: [deployTarget] => (item={u'SANMOUNT': u'/opt/sas/viya/config/data/sasdatasvrc', u'NODE_NUMBER': u'0', u'PG_PORT': u'5432', u'SERVICE_NAME': u'postgres'})
+2020-06-03 15:41:01,211 p=123938 u=viyadep |  TASK [validate-postgres-rules : Retrieve the PCP_PORT port number defined for pgpoolc from vars.yml] ***************
+2020-06-03 15:41:01,212 p=123938 u=viyadep |  ok: [deployTarget] => (item={u'HA_PGPOOL_WATCHDOG_PORT': u'', u'PCP_PORT': u'5430', u'SANMOUNT': u'/opt/sas/viya/config/data/sasdatasvrc', u'SERVICE_NAME': u'postgres', u'HA_PGPOOL_VIRTUAL_IP': u'', u'POOL_NUMBER': u'0', u'PGPOOL_PORT': u'5431'})
+2020-06-03 15:41:01,326 p=123938 u=viyadep |  TASK [validate-postgres-rules : Retrieve the PGPOOL_PORT port number defined for pgpoolc from vars.yml] ************
+2020-06-03 15:41:01,327 p=123938 u=viyadep |  ok: [deployTarget] => (item={u'HA_PGPOOL_WATCHDOG_PORT': u'', u'PCP_PORT': u'5430', u'SANMOUNT': u'/opt/sas/viya/config/data/sasdatasvrc', u'SERVICE_NAME': u'postgres', u'HA_PGPOOL_VIRTUAL_IP': u'', u'POOL_NUMBER': u'0', u'PGPOOL_PORT': u'5431'})
+2020-06-03 15:41:01,541 p=123938 u=viyadep |  TASK [validate-postgres-rules : set_fact] **************************************************************************
+2020-06-03 15:41:01,542 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:41:01,639 p=123938 u=viyadep |  TASK [validate-postgres-rules : Retrieve the pgpoolc host name from the inventory file] ****************************
+2020-06-03 15:41:01,639 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:41:01,741 p=123938 u=viyadep |  TASK [validate-postgres-rules : set_fact] **************************************************************************
+2020-06-03 15:41:01,741 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:41:01,791 p=123938 u=viyadep |  TASK [validate-postgres-rules : set_fact] **************************************************************************
+2020-06-03 15:41:01,792 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:41:01,841 p=123938 u=viyadep |  TASK [validate-postgres-rules : set_fact] **************************************************************************
+2020-06-03 15:41:01,841 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:41:01,890 p=123938 u=viyadep |  TASK [validate-postgres-rules : set_fact] **************************************************************************
+2020-06-03 15:41:01,890 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:41:02,056 p=123938 u=viyadep |  TASK [validate-postgres-rules : set_fact] **************************************************************************
+2020-06-03 15:41:02,056 p=123938 u=viyadep |  ok: [deployTarget] => (item={u'HA_PGPOOL_WATCHDOG_PORT': u'', u'PCP_PORT': u'5430', u'SANMOUNT': u'/opt/sas/viya/config/data/sasdatasvrc', u'SERVICE_NAME': u'postgres', u'HA_PGPOOL_VIRTUAL_IP': u'', u'POOL_NUMBER': u'0', u'PGPOOL_PORT': u'5431'})
+2020-06-03 15:41:02,178 p=123938 u=viyadep |  TASK [validate-postgres-rules : Retrieve pgpoolc pool numbers by service name] *************************************
+2020-06-03 15:41:02,179 p=123938 u=viyadep |  ok: [deployTarget] => (item=[u'0', u'postgres'])
+2020-06-03 15:41:02,394 p=123938 u=viyadep |  TASK [validate-postgres-rules : Verify that the port number is unique] *********************************************
+2020-06-03 15:41:02,395 p=123938 u=viyadep |  ok: [deployTarget] => {
+    "changed": false, 
+    "msg": "All assertions passed"
+}
+2020-06-03 15:41:02,458 p=123938 u=viyadep |  TASK [validate-postgres-rules : Verify that all SERVICE_NAME values defined for pgpoolc are unique on a host] ******
+2020-06-03 15:41:02,459 p=123938 u=viyadep |  ok: [deployTarget] => (item=deployTarget) => {
+    "ansible_loop_var": "item", 
+    "changed": false, 
+    "item": "deployTarget", 
+    "msg": "All assertions passed"
+}
+2020-06-03 15:41:02,519 p=123938 u=viyadep |  TASK [validate-postgres-rules : Retrieve sasdatasvrc node numbers by service name] *********************************
+2020-06-03 15:41:02,519 p=123938 u=viyadep |  ok: [deployTarget] => (item=[u'0', u'postgres'])
+2020-06-03 15:41:02,570 p=123938 u=viyadep |  TASK [validate-postgres-rules : Verify that the SERVICE_NAME has at least one pgpoolc and one sasdatasvrc] *********
+2020-06-03 15:41:02,571 p=123938 u=viyadep |  ok: [deployTarget] => {
+    "changed": false, 
+    "msg": "All assertions passed"
+}
+2020-06-03 15:41:02,635 p=123938 u=viyadep |  TASK [validate-postgres-rules : Run query to calculate the NODE_NUMBER of sasdatasvrc] *****************************
+2020-06-03 15:41:02,635 p=123938 u=viyadep |  ok: [deployTarget] => (item=postgres)
+2020-06-03 15:41:02,695 p=123938 u=viyadep |  TASK [validate-postgres-rules : Verify that no duplicated NODE_NUMBER is found] ************************************
+2020-06-03 15:41:02,695 p=123938 u=viyadep |  ok: [deployTarget] => (item={'item': u'postgres', 'ansible_loop_var': u'item', 'ansible_facts': {u'lowest_node_number': u'0', u'node_numbers_expected': u'1', u'node_numbers_found': u'1'}, 'failed': False, 'changed': False}) => {
+    "ansible_loop_var": "item", 
+    "changed": false, 
+    "item": {
+        "ansible_facts": {
+            "lowest_node_number": "0", 
+            "node_numbers_expected": "1", 
+            "node_numbers_found": "1"
+        }, 
+        "ansible_loop_var": "item", 
+        "changed": false, 
+        "failed": false, 
+        "item": "postgres"
+    }, 
+    "msg": "All assertions passed"
+}
+2020-06-03 15:41:02,755 p=123938 u=viyadep |  TASK [validate-postgres-rules : Verify that no negative NODE_NUMBER is found] **************************************
+2020-06-03 15:41:02,756 p=123938 u=viyadep |  ok: [deployTarget] => (item={'item': u'postgres', 'ansible_loop_var': u'item', 'ansible_facts': {u'lowest_node_number': u'0', u'node_numbers_expected': u'1', u'node_numbers_found': u'1'}, 'failed': False, 'changed': False}) => {
+    "ansible_loop_var": "item", 
+    "changed": false, 
+    "item": {
+        "ansible_facts": {
+            "lowest_node_number": "0", 
+            "node_numbers_expected": "1", 
+            "node_numbers_found": "1"
+        }, 
+        "ansible_loop_var": "item", 
+        "changed": false, 
+        "failed": false, 
+        "item": "postgres"
+    }, 
+    "msg": "All assertions passed"
+}
+2020-06-03 15:41:02,806 p=123938 u=viyadep |  TASK [validate-postgres-rules : Retrieve the POOL_NUMBER of pgpoolc] ***********************************************
+2020-06-03 15:41:02,807 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:41:02,908 p=123938 u=viyadep |  TASK [validate-postgres-rules : set_fact] **************************************************************************
+2020-06-03 15:41:02,908 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:41:03,008 p=123938 u=viyadep |  TASK [validate-postgres-rules : Ends the play] *********************************************************************
+2020-06-03 15:41:03,009 p=123938 u=viyadep |  ok: [deployTarget] => {
+    "msg": "Postgres playbook validation for a SAS Infrastructure Data Server in a non-High Availability environment ends successfully."
+}
+2020-06-03 15:41:03,047 p=123938 u=viyadep |  PLAY [Validate the SAS Infrastructure Data Server for Common Planning Services for Viya entries in inventory.ini and vars.yml] ***
+2020-06-03 15:41:03,119 p=123938 u=viyadep |  TASK [include_vars] ************************************************************************************************
+2020-06-03 15:41:03,119 p=123938 u=viyadep |  ok: [deployTarget] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:41:03,286 p=123938 u=viyadep |  ok: [micro2] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:41:03,321 p=123938 u=viyadep |  ok: [controller1] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:41:03,323 p=123938 u=viyadep |  ok: [controller2] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:41:03,325 p=123938 u=viyadep |  ok: [worker1] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:41:03,342 p=123938 u=viyadep |  ok: [worker2] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:41:03,563 p=123938 u=viyadep |  PLAY [Analyze existing Java] ***************************************************************************************
+2020-06-03 15:41:04,931 p=123938 u=viyadep |  TASK [sas-requirements-java : get remote JAVA_HOME] ****************************************************************
+2020-06-03 15:41:04,932 p=123938 u=viyadep |  changed: [deployTarget]
+2020-06-03 15:41:04,946 p=123938 u=viyadep |  changed: [micro2]
+2020-06-03 15:41:04,973 p=123938 u=viyadep |  changed: [controller2]
+2020-06-03 15:41:04,988 p=123938 u=viyadep |  changed: [controller1]
+2020-06-03 15:41:05,013 p=123938 u=viyadep |  changed: [worker1]
+2020-06-03 15:41:05,214 p=123938 u=viyadep |  changed: [worker2]
+2020-06-03 15:41:06,597 p=123938 u=viyadep |  TASK [sas-requirements-java : Set expectation to use the OpenJDK Java] *********************************************
+2020-06-03 15:41:06,597 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:41:06,630 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:41:06,663 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:41:06,700 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:41:06,734 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:41:06,754 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:41:07,148 p=123938 u=viyadep |  TASK [sas-requirements-java : Check if the expected Java exists] ***************************************************
+2020-06-03 15:41:07,149 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:41:07,177 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:41:07,220 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:41:07,233 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:41:07,241 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:41:07,467 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:41:07,945 p=123938 u=viyadep |  TASK [sas-requirements-java : Validate expected Java] **************************************************************
+2020-06-03 15:41:07,946 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:41:07,948 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:41:07,962 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:41:07,991 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:41:08,038 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:41:08,316 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:41:08,322 p=123938 u=viyadep |  PLAY [Setup Host] **************************************************************************************************
+2020-06-03 15:41:08,394 p=123938 u=viyadep |  TASK [include_vars] ************************************************************************************************
+2020-06-03 15:41:08,394 p=123938 u=viyadep |  ok: [deployTarget] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:41:08,428 p=123938 u=viyadep |  ok: [micro2] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:41:08,460 p=123938 u=viyadep |  ok: [controller1] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:41:08,502 p=123938 u=viyadep |  ok: [controller2] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:41:08,538 p=123938 u=viyadep |  ok: [worker1] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:41:08,570 p=123938 u=viyadep |  ok: [worker2] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:41:14,494 p=123938 u=viyadep |  TASK [host-setup-x64_redhat_linux_6-yum : install libselinux python bindings] **************************************
+2020-06-03 15:41:14,495 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:41:14,624 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:41:14,625 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:41:14,720 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:41:14,924 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:41:19,867 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:41:21,093 p=123938 u=viyadep |  TASK [host-setup-x64_redhat_linux_6-yum : setup] *******************************************************************
+2020-06-03 15:41:21,093 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:41:21,097 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:41:21,099 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:41:21,138 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:41:21,252 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:41:22,165 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:41:22,171 p=123938 u=viyadep |  PLAY [Setup repositories] ******************************************************************************************
+2020-06-03 15:41:22,244 p=123938 u=viyadep |  TASK [include_vars] ************************************************************************************************
+2020-06-03 15:41:22,245 p=123938 u=viyadep |  ok: [deployTarget] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:41:22,280 p=123938 u=viyadep |  ok: [micro2] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:41:22,316 p=123938 u=viyadep |  ok: [controller1] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:41:22,350 p=123938 u=viyadep |  ok: [controller2] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:41:22,385 p=123938 u=viyadep |  ok: [worker1] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:41:22,416 p=123938 u=viyadep |  ok: [worker2] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:41:24,317 p=123938 u=viyadep |  TASK [repo-setup-x64_redhat_linux_6-yum : Verify that certificates are already installed] **************************
+2020-06-03 15:41:24,317 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:41:24,333 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:41:24,364 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:41:24,443 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:41:24,468 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:41:24,652 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:41:24,725 p=123938 u=viyadep |  TASK [repo-setup-x64_redhat_linux_6-yum : Determine if certificates should be installed] ***************************
+2020-06-03 15:41:24,726 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:41:24,757 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:41:24,789 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:41:24,825 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:41:24,857 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:41:24,882 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:41:24,962 p=123938 u=viyadep |  TASK [repo-setup-x64_redhat_linux_6-yum : Get epoch and use that as our id] ****************************************
+2020-06-03 15:41:24,962 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:41:25,477 p=123938 u=viyadep |  TASK [repo-setup-x64_redhat_linux_6-yum : Create temporary directory on remote machine] ****************************
+2020-06-03 15:41:25,478 p=123938 u=viyadep |  changed: [controller1]
+2020-06-03 15:41:25,479 p=123938 u=viyadep |  changed: [controller2]
+2020-06-03 15:41:25,480 p=123938 u=viyadep |  changed: [micro2]
+2020-06-03 15:41:25,481 p=123938 u=viyadep |  changed: [deployTarget]
+2020-06-03 15:41:25,489 p=123938 u=viyadep |  changed: [worker1]
+2020-06-03 15:41:25,761 p=123938 u=viyadep |  changed: [worker2]
+2020-06-03 15:41:25,832 p=123938 u=viyadep |  TASK [repo-setup-x64_redhat_linux_6-yum : Set the location of the temp directory] **********************************
+2020-06-03 15:41:25,832 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:41:25,866 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:41:25,897 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:41:25,932 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:41:25,965 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:41:25,982 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:41:26,052 p=123938 u=viyadep |  TASK [repo-setup-x64_redhat_linux_6-yum : Set METAREPO_CERT_SOURCE] ************************************************
+2020-06-03 15:41:26,052 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:41:26,084 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:41:26,119 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:41:26,152 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:41:26,185 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:41:26,202 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:41:27,305 p=123938 u=viyadep |  TASK [repo-setup-x64_redhat_linux_6-yum : Copy certificates to remote machine] *************************************
+2020-06-03 15:41:27,305 p=123938 u=viyadep |  changed: [deployTarget] => (item=entitlement_certificate.pem)
+2020-06-03 15:41:27,306 p=123938 u=viyadep |  changed: [micro2] => (item=entitlement_certificate.pem)
+2020-06-03 15:41:27,307 p=123938 u=viyadep |  changed: [controller2] => (item=entitlement_certificate.pem)
+2020-06-03 15:41:27,307 p=123938 u=viyadep |  changed: [controller1] => (item=entitlement_certificate.pem)
+2020-06-03 15:41:27,308 p=123938 u=viyadep |  changed: [worker1] => (item=entitlement_certificate.pem)
+2020-06-03 15:41:27,308 p=123938 u=viyadep |  changed: [micro2] => (item=SAS_CA_Certificate.pem)
+2020-06-03 15:41:27,310 p=123938 u=viyadep |  changed: [controller2] => (item=SAS_CA_Certificate.pem)
+2020-06-03 15:41:27,347 p=123938 u=viyadep |  changed: [deployTarget] => (item=SAS_CA_Certificate.pem)
+2020-06-03 15:41:27,391 p=123938 u=viyadep |  changed: [controller1] => (item=SAS_CA_Certificate.pem)
+2020-06-03 15:41:27,534 p=123938 u=viyadep |  changed: [worker1] => (item=SAS_CA_Certificate.pem)
+2020-06-03 15:41:27,808 p=123938 u=viyadep |  changed: [worker2] => (item=entitlement_certificate.pem)
+2020-06-03 15:41:28,315 p=123938 u=viyadep |  changed: [worker2] => (item=SAS_CA_Certificate.pem)
+2020-06-03 15:41:30,047 p=123938 u=viyadep |  TASK [repo-setup-x64_redhat_linux_6-yum : Curl to get SAS meta-repository rpm] *************************************
+2020-06-03 15:41:30,047 p=123938 u=viyadep |  changed: [deployTarget]
+2020-06-03 15:41:30,050 p=123938 u=viyadep |  changed: [worker1]
+2020-06-03 15:41:30,051 p=123938 u=viyadep |  changed: [controller1]
+2020-06-03 15:41:30,217 p=123938 u=viyadep |  changed: [controller2]
+2020-06-03 15:41:30,221 p=123938 u=viyadep |  changed: [micro2]
+2020-06-03 15:41:30,597 p=123938 u=viyadep |  changed: [worker2]
+2020-06-03 15:41:31,043 p=123938 u=viyadep |  TASK [repo-setup-x64_redhat_linux_6-yum : Verify the successful download of metarepo file sas-meta-repo.rpm] *******
+2020-06-03 15:41:31,044 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:41:31,054 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:41:31,066 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:41:31,087 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:41:31,155 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:41:31,403 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:41:37,687 p=123938 u=viyadep |  TASK [repo-setup-x64_redhat_linux_6-yum : Install SAS meta-repository rpm] *****************************************
+2020-06-03 15:41:37,687 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:41:37,715 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:41:37,731 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:41:37,752 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:41:37,808 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:41:43,123 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:41:43,503 p=123938 u=viyadep |  TASK [repo-setup-x64_redhat_linux_6-yum : Copy client certificate into place] **************************************
+2020-06-03 15:41:43,503 p=123938 u=viyadep |  changed: [micro2]
+2020-06-03 15:41:43,504 p=123938 u=viyadep |  changed: [deployTarget]
+2020-06-03 15:41:43,538 p=123938 u=viyadep |  changed: [controller1]
+2020-06-03 15:41:43,559 p=123938 u=viyadep |  changed: [controller2]
+2020-06-03 15:41:43,578 p=123938 u=viyadep |  changed: [worker1]
+2020-06-03 15:41:43,832 p=123938 u=viyadep |  changed: [worker2]
+2020-06-03 15:41:44,373 p=123938 u=viyadep |  TASK [repo-setup-x64_redhat_linux_6-yum : Determine currently installed SAS repository definition packages] ********
+2020-06-03 15:41:44,373 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:41:44,441 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:41:44,448 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:41:44,470 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:41:44,484 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:41:44,685 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:41:44,760 p=123938 u=viyadep |  TASK [repo-setup-x64_redhat_linux_6-yum : Determine desired SAS repository definition packages] ********************
+2020-06-03 15:41:44,761 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:41:44,803 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:41:44,837 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:41:44,871 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:41:44,906 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:41:44,924 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:41:44,994 p=123938 u=viyadep |  TASK [repo-setup-x64_redhat_linux_6-yum : Calculate undesired SAS repository definition packages] ******************
+2020-06-03 15:41:44,995 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:41:45,027 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:41:45,060 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:41:45,094 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:41:45,125 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:41:45,145 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:42:22,090 p=123938 u=viyadep |  TASK [repo-setup-x64_redhat_linux_6-yum : Remove undesired SAS repository definition packages] *********************
+2020-06-03 15:42:22,090 p=123938 u=viyadep |  changed: [controller2]
+2020-06-03 15:42:31,436 p=123938 u=viyadep |  changed: [deployTarget]
+2020-06-03 15:42:53,083 p=123938 u=viyadep |  changed: [micro2]
+2020-06-03 15:42:53,813 p=123938 u=viyadep |  changed: [worker1]
+2020-06-03 15:42:55,907 p=123938 u=viyadep |  changed: [controller1]
+2020-06-03 15:42:57,302 p=123938 u=viyadep |  changed: [worker2]
+2020-06-03 15:44:03,182 p=123938 u=viyadep |  TASK [repo-setup-x64_redhat_linux_6-yum : Install repository definition RPMs for orderables] ***********************
+2020-06-03 15:44:03,183 p=123938 u=viyadep |  changed: [controller2] => (item=[u'sas-depentviya-136-x64_redhat_linux_6-yum', u'sas-espcasvcf-135-x64_redhat_linux_6-yum', u'sas-odbc-125-x64_redhat_linux_6-yum', u'sas-pcfile-125-x64_redhat_linux_6-yum', u'sas-statviya-125-x64_redhat_linux_6-yum', u'sas-va-125-x64_redhat_linux_6-yum', u'sas-vcmnfnd-126-x64_redhat_linux_6-yum'])
+2020-06-03 15:44:03,423 p=123938 u=viyadep |  changed: [worker1] => (item=[u'sas-depentviya-136-x64_redhat_linux_6-yum', u'sas-espcasvcf-135-x64_redhat_linux_6-yum', u'sas-odbc-125-x64_redhat_linux_6-yum', u'sas-pcfile-125-x64_redhat_linux_6-yum', u'sas-statviya-125-x64_redhat_linux_6-yum', u'sas-va-125-x64_redhat_linux_6-yum', u'sas-vcmnfnd-126-x64_redhat_linux_6-yum'])
+2020-06-03 15:44:03,481 p=123938 u=viyadep |  changed: [micro2] => (item=[u'sas-depentviya-136-x64_redhat_linux_6-yum', u'sas-espcasvcf-135-x64_redhat_linux_6-yum', u'sas-odbc-125-x64_redhat_linux_6-yum', u'sas-pcfile-125-x64_redhat_linux_6-yum', u'sas-statviya-125-x64_redhat_linux_6-yum', u'sas-va-125-x64_redhat_linux_6-yum', u'sas-vcmnfnd-126-x64_redhat_linux_6-yum'])
+2020-06-03 15:44:07,984 p=123938 u=viyadep |  changed: [deployTarget] => (item=[u'sas-depentviya-136-x64_redhat_linux_6-yum', u'sas-espcasvcf-135-x64_redhat_linux_6-yum', u'sas-odbc-125-x64_redhat_linux_6-yum', u'sas-pcfile-125-x64_redhat_linux_6-yum', u'sas-statviya-125-x64_redhat_linux_6-yum', u'sas-va-125-x64_redhat_linux_6-yum', u'sas-vcmnfnd-126-x64_redhat_linux_6-yum'])
+2020-06-03 15:44:08,252 p=123938 u=viyadep |  changed: [controller1] => (item=[u'sas-depentviya-136-x64_redhat_linux_6-yum', u'sas-espcasvcf-135-x64_redhat_linux_6-yum', u'sas-odbc-125-x64_redhat_linux_6-yum', u'sas-pcfile-125-x64_redhat_linux_6-yum', u'sas-statviya-125-x64_redhat_linux_6-yum', u'sas-va-125-x64_redhat_linux_6-yum', u'sas-vcmnfnd-126-x64_redhat_linux_6-yum'])
+2020-06-03 15:45:08,159 p=123938 u=viyadep |  changed: [worker2] => (item=[u'sas-depentviya-136-x64_redhat_linux_6-yum', u'sas-espcasvcf-135-x64_redhat_linux_6-yum', u'sas-odbc-125-x64_redhat_linux_6-yum', u'sas-pcfile-125-x64_redhat_linux_6-yum', u'sas-statviya-125-x64_redhat_linux_6-yum', u'sas-va-125-x64_redhat_linux_6-yum', u'sas-vcmnfnd-126-x64_redhat_linux_6-yum'])
+2020-06-03 15:45:08,739 p=123938 u=viyadep |  TASK [repo-setup-x64_redhat_linux_6-yum : Clean up] ****************************************************************
+2020-06-03 15:45:08,739 p=123938 u=viyadep |  changed: [deployTarget]
+2020-06-03 15:45:08,747 p=123938 u=viyadep |  changed: [micro2]
+2020-06-03 15:45:08,815 p=123938 u=viyadep |  changed: [controller2]
+2020-06-03 15:45:08,827 p=123938 u=viyadep |  changed: [controller1]
+2020-06-03 15:45:08,896 p=123938 u=viyadep |  changed: [worker1]
+2020-06-03 15:45:09,004 p=123938 u=viyadep |  changed: [worker2]
+2020-06-03 15:45:33,537 p=123938 u=viyadep |  TASK [Install sas-cleanutils] **************************************************************************************
+2020-06-03 15:45:33,537 p=123938 u=viyadep |  changed: [controller2]
+2020-06-03 15:45:33,782 p=123938 u=viyadep |  changed: [worker1]
+2020-06-03 15:45:33,826 p=123938 u=viyadep |  changed: [micro2]
+2020-06-03 15:45:36,759 p=123938 u=viyadep |  changed: [controller1]
+2020-06-03 15:45:37,252 p=123938 u=viyadep |  changed: [deployTarget]
+2020-06-03 15:45:55,904 p=123938 u=viyadep |  changed: [worker2]
+2020-06-03 15:45:56,119 p=123938 u=viyadep |  PLAY [Ensure install user exists and is set up properly] ***********************************************************
+2020-06-03 15:45:56,191 p=123938 u=viyadep |  TASK [include_vars] ************************************************************************************************
+2020-06-03 15:45:56,191 p=123938 u=viyadep |  ok: [deployTarget] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:45:56,226 p=123938 u=viyadep |  ok: [micro2] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:45:56,263 p=123938 u=viyadep |  ok: [controller1] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:45:56,297 p=123938 u=viyadep |  ok: [controller2] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:45:56,332 p=123938 u=viyadep |  ok: [worker1] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:45:56,353 p=123938 u=viyadep |  ok: [worker2] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:45:56,715 p=123938 u=viyadep |  included: /home/viyadep/Viya3.5/upgrade/sas_viya_playbook/tasks/create_sas_user.yml for deployTarget, micro2, controller1, controller2, worker1, worker2
+2020-06-03 15:45:56,929 p=123938 u=viyadep |  TASK [ensure_install_user : Ensure installation user and group are present] ****************************************
+2020-06-03 15:45:56,929 p=123938 u=viyadep |  changed: [deployTarget]
+2020-06-03 15:45:56,965 p=123938 u=viyadep |  changed: [micro2]
+2020-06-03 15:45:56,993 p=123938 u=viyadep |  changed: [controller1]
+2020-06-03 15:45:56,996 p=123938 u=viyadep |  changed: [controller2]
+2020-06-03 15:45:57,078 p=123938 u=viyadep |  changed: [worker1]
+2020-06-03 15:45:57,084 p=123938 u=viyadep |  changed: [worker2]
+2020-06-03 15:45:57,455 p=123938 u=viyadep |  included: /home/viyadep/Viya3.5/upgrade/sas_viya_playbook/tasks/check_user.yml for deployTarget, micro2, controller1, controller2, worker1, worker2
+2020-06-03 15:45:57,843 p=123938 u=viyadep |  TASK [ensure_install_user : Verify that sas user exists] ***********************************************************
+2020-06-03 15:45:57,844 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:45:57,846 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:45:57,864 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:45:57,916 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:45:58,002 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:45:58,161 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:45:58,234 p=123938 u=viyadep |  TASK [ensure_install_user : Verify that sas user exists] ***********************************************************
+2020-06-03 15:45:58,235 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:45:58,267 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:45:58,299 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:45:58,331 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:45:58,364 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:45:58,385 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:45:58,801 p=123938 u=viyadep |  TASK [ensure_install_user : Verify that sas user is a member of the group sas] *************************************
+2020-06-03 15:45:58,802 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:45:58,822 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:45:58,848 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:45:58,903 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:45:58,954 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:45:59,806 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:45:59,883 p=123938 u=viyadep |  TASK [ensure_install_user : Verify that sas user is a member of the group sas] *************************************
+2020-06-03 15:45:59,884 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:45:59,915 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:45:59,950 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:45:59,983 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:46:00,015 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:46:00,070 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:46:00,487 p=123938 u=viyadep |  included: /home/viyadep/Viya3.5/upgrade/sas_viya_playbook/tasks/provision_sas_user.yml for deployTarget, micro2, controller1, controller2, worker1, worker2
+2020-06-03 15:46:00,908 p=123938 u=viyadep |  included: /home/viyadep/Viya3.5/upgrade/sas_viya_playbook/tasks/provision_user_ssh.yml for deployTarget, micro2, controller1, controller2, worker1, worker2
+2020-06-03 15:46:01,669 p=123938 u=viyadep |  TASK [ensure_install_user : Verify the user home directory] ********************************************************
+2020-06-03 15:46:01,670 p=123938 u=viyadep |   [WARNING]: Module remote_tmp /tmp/.sas.ansible/ did not exist and was created with a mode of 0700, this may cause
+issues when running as another user. To avoid this, create the remote_tmp dir with the correct permissions manually
+
+2020-06-03 15:46:01,670 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:46:01,718 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:46:01,749 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:46:01,759 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:46:01,768 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:46:02,167 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:46:02,873 p=123938 u=viyadep |  TASK [ensure_install_user : Verify the user .ssh directory] ********************************************************
+2020-06-03 15:46:02,873 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:46:02,887 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:46:02,941 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:46:02,955 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:46:02,992 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:46:03,255 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:46:04,076 p=123938 u=viyadep |  TASK [ensure_install_user : Create user authorized_keys file] ******************************************************
+2020-06-03 15:46:04,076 p=123938 u=viyadep |  changed: [deployTarget]
+2020-06-03 15:46:04,085 p=123938 u=viyadep |  changed: [micro2]
+2020-06-03 15:46:04,130 p=123938 u=viyadep |  changed: [controller1]
+2020-06-03 15:46:04,140 p=123938 u=viyadep |  changed: [controller2]
+2020-06-03 15:46:04,185 p=123938 u=viyadep |  changed: [worker1]
+2020-06-03 15:46:04,381 p=123938 u=viyadep |  changed: [worker2]
+2020-06-03 15:46:04,669 p=123938 u=viyadep |  TASK [ensure_install_user : Determine whether the installation user shell requires adjustment] *********************
+2020-06-03 15:46:04,669 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:46:04,672 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:46:04,714 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:46:04,763 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:46:04,811 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:46:04,884 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:46:05,426 p=123938 u=viyadep |  TASK [ensure_install_user : Verify the installation user can log on] ***********************************************
+2020-06-03 15:46:05,426 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:46:05,427 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:46:05,444 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:46:05,476 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:46:05,512 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:46:05,631 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:46:05,637 p=123938 u=viyadep |  PLAY [Verify host specification] ***********************************************************************************
+2020-06-03 15:46:05,711 p=123938 u=viyadep |  TASK [include_vars] ************************************************************************************************
+2020-06-03 15:46:05,712 p=123938 u=viyadep |  ok: [deployTarget] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:46:05,747 p=123938 u=viyadep |  ok: [micro2] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:46:05,782 p=123938 u=viyadep |  ok: [controller1] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:46:05,815 p=123938 u=viyadep |  ok: [controller2] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:46:05,847 p=123938 u=viyadep |  ok: [worker1] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:46:05,874 p=123938 u=viyadep |  ok: [worker2] => (item=/home/viyadep/Viya3.5/upgrade/sas_viya_playbook/internal/soe_defaults.yml)
+2020-06-03 15:46:06,335 p=123938 u=viyadep |  TASK [host-verification-x64_redhat_linux_6-yum : set_fact] *********************************************************
+2020-06-03 15:46:06,336 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:46:06,368 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:46:06,402 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:46:06,434 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:46:06,467 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:46:06,486 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:46:06,983 p=123938 u=viyadep |  TASK [host-verification-x64_redhat_linux_6-yum : Perform SELinux check] ********************************************
+2020-06-03 15:46:06,983 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:46:06,984 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:46:06,984 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:46:06,985 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:46:07,001 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:46:07,232 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:46:22,518 p=123938 u=viyadep |  TASK [host-verification-x64_redhat_linux_6-yum : Perform disk space check] *****************************************
+2020-06-03 15:46:22,518 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:46:22,940 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:46:31,355 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:46:37,422 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:46:38,405 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:46:45,664 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:46:46,561 p=123938 u=viyadep |  TASK [host-verification-x64_redhat_linux_6-yum : Perform ulimit check] *********************************************
+2020-06-03 15:46:46,561 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:46:46,562 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:46:46,564 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:46:46,603 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:46:46,622 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:46:47,082 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:46:47,865 p=123938 u=viyadep |  TASK [host-verification-x64_redhat_linux_6-yum : Perform init system check] ****************************************
+2020-06-03 15:46:47,866 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:46:47,867 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:46:47,899 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:46:47,907 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:46:47,929 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:46:48,175 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:46:49,009 p=123938 u=viyadep |  TASK [host-verification-x64_redhat_linux_6-yum : Identify any host verification check failures] ********************
+2020-06-03 15:46:49,010 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:46:49,045 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:46:49,080 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:46:49,113 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:46:49,147 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:46:49,173 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:46:49,255 p=123938 u=viyadep |  TASK [host-verification-x64_redhat_linux_6-yum : Halt execution on any host verification check failures] ***********
+2020-06-03 15:46:49,255 p=123938 u=viyadep |  ok: [deployTarget]
+2020-06-03 15:46:49,287 p=123938 u=viyadep |  ok: [micro2]
+2020-06-03 15:46:49,320 p=123938 u=viyadep |  ok: [controller1]
+2020-06-03 15:46:49,353 p=123938 u=viyadep |  ok: [controller2]
+2020-06-03 15:46:49,387 p=123938 u=viyadep |  ok: [worker1]
+2020-06-03 15:46:49,408 p=123938 u=viyadep |  ok: [worker2]
+2020-06-03 15:46:50,097 p=123938 u=viyadep |  PLAY RECAP *********************************************************************************************************
+2020-06-03 15:46:50,098 p=123938 u=viyadep |  controller1                : ok=95   changed=12   unreachable=0    failed=0    skipped=51   rescued=0    ignored=0   
+2020-06-03 15:46:50,098 p=123938 u=viyadep |  controller2                : ok=95   changed=12   unreachable=0    failed=0    skipped=51   rescued=0    ignored=0   
+2020-06-03 15:46:50,098 p=123938 u=viyadep |  deployTarget               : ok=111  changed=11   unreachable=0    failed=0    skipped=64   rescued=0    ignored=0   
+2020-06-03 15:46:50,098 p=123938 u=viyadep |  localhost                  : ok=10   changed=0    unreachable=0    failed=0    skipped=6    rescued=0    ignored=0   
+2020-06-03 15:46:50,099 p=123938 u=viyadep |  micro2                     : ok=79   changed=11   unreachable=0    failed=0    skipped=47   rescued=0    ignored=0   
+2020-06-03 15:46:50,099 p=123938 u=viyadep |  worker1                    : ok=95   changed=11   unreachable=0    failed=0    skipped=51   rescued=0    ignored=0   
+2020-06-03 15:46:50,099 p=123938 u=viyadep |  worker2                    : ok=95   changed=12   unreachable=0    failed=0    skipped=51   rescued=0    ignored=0   
