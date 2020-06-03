@@ -1,4 +1,4 @@
-deployment.log
+#deployment.log
 filter_plugins/*.pyc
 *.tmp
 viya-ark/playbooks/merge-playbook/merged_files
