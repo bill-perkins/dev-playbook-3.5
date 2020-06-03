@@ -1,0 +1,11 @@
+CLUSTER_DEFINITIONS:
+  cas:
+    default:
+      primary_host: "controller1"
+      secondary_host: "controller2"
+      worker_hosts: "worker1,worker2,"
+      tenant: shared
+      casenv_user: cas
+      casenv_group: sas
+      env:
+        CAS_DISK_CACHE: /sastmp/sascache
