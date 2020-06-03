@@ -1,6 +1,5 @@
 # Recommended Ansible version
-#MAXIMUM_RECOMMENDED_ANSIBLE_VERSION: 2.7
-MAXIMUM_RECOMMENDED_ANSIBLE_VERSION: 2.8
+MAXIMUM_RECOMMENDED_ANSIBLE_VERSION: 2.9
 
 #  DEPLOYMENT_LABEL sets the datacenter for the Consul server. In addition, any
 #  local Consul agents will use DEPLOYMENT_LABEL to become members of a
@@ -33,14 +32,12 @@ DISABLE_CONSUL_HTTP_PORT: true
 HTTPD_CERT_PATH: "/etc/pki/tls/certs/localhost.crt"
 
 # The name of the license file on the Ansible machine.
-#LICENSE_FILENAME: "SASViyaV0300_9C9NC6_Linux_x86-64.txt"
-LICENSE_FILENAME: "SASViyaV0300_9CCM27_Linux_x86-64.txt"
+LICENSE_FILENAME: "SASViyaV0300_9CCK5K_Linux_x86-64.txt"
 
 # The name of the composite license file on the Ansible machine.
 # If both files are present, the playbook will use the
 # composite license file.
-#LICENSE_COMPOSITE_FILENAME: "SASViyaV0300_9C9NC6_70231360_Linux_x86-64.jwt"
-LICENSE_COMPOSITE_FILENAME: "SASViyaV0300_9CCM27_70231360_Linux_x86-64.jwt"
+LICENSE_COMPOSITE_FILENAME: "SASViyaV0300_9CCK5K_70231360_Linux_x86-64.jwt"
 
 # The default value of this variable is the base URL of the repository warehouse used when
 # the playbook was generated. After playbook generation, this variable can be used to manage
@@ -55,18 +52,20 @@ REPOSITORY_WAREHOUSE: "https://ses.sas.download/ses/"
 # The machine reference (with deployTarget as the default) must be enclosed
 # in quotes if it is set to a value that starts with a number.
 INVOCATION_VARIABLES:
-  deployTarget:
-    pgpoolc:
-    - PCP_PORT: '5430'
-      PGPOOL_PORT: '5431'
-      SANMOUNT: '{{ SAS_CONFIG_ROOT }}/data/sasdatasvrc'
-      SERVICE_NAME: postgres
-    sasdatasvrc:
-    - NODE_NUMBER: '0'
-      NODE_TYPE: P
-      PG_PORT: '5432'
-      SANMOUNT: '{{ SAS_CONFIG_ROOT }}/data/sasdatasvrc'
-      SERVICE_NAME: postgres
+   deployTarget:
+      pgpoolc:
+      - HA_PGPOOL_VIRTUAL_IP: ''
+        HA_PGPOOL_WATCHDOG_PORT: ''
+        POOL_NUMBER: '0'
+        PCP_PORT: '5430'
+        PGPOOL_PORT: '5431'
+        SANMOUNT: '{{ SAS_CONFIG_ROOT }}/data/sasdatasvrc'
+        SERVICE_NAME: postgres
+      sasdatasvrc:
+      - NODE_NUMBER: '0'
+        PG_PORT: '5432'
+        SANMOUNT: '{{ SAS_CONFIG_ROOT }}/data/sasdatasvrc'
+        SERVICE_NAME: postgres
 
 
 ############################################################################
@@ -89,51 +88,12 @@ INVOCATION_VARIABLES:
 # deployment and set the path to Java in sasenv_java_home.
 sas_install_java: true
 
-# User specific location of where Java resides on the host. 
+# User specific location of where Java resides on the host.
 # If not set, the deployment will use the Java defined on the host.
 # This is an optional setting.
 # Example:
 #   sasenv_java_home: /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.101-3.b13.el6_8.x86_64/jre
-sasenv_java_home: 
-
-# When set to true will try and create any user in the sas_users group below.
-# This will also create and setup ssh keys for that user across all hosts
-# default is true
-setup_sas_users: true
-
-# Define the users so they can be created. The block includes user ID cas which should remain
-# so that SSH keys can be assigned to it. If you did not create a cas user named "cas", replace
-# "cas" below with the user you did create. Recreate the same block for any other users you
-# want to add. See the deployment guide for more information.
-# To assign a password, here is a way to create the password. 
-# This will require the passlib library to be installed: sudo yum install python-passlib
-#   At a command line prompt run:
-#     python -c "from passlib.hash import sha512_crypt; import getpass; print sha512_crypt.encrypt(getpass.getpass(), rounds=10000)"
-#   Take the value that is returned and paste it inbetween the single quotes below. Example:
-#     password: 'secret'
-# If setup_home is set to true, will use the values of shell and home when creating the user
-sas_users:
-  cas:
-    group: sas
-    password: ''
-    setup_home: false
-    shell:
-    home:
-
-#############################################################################################
-#
-# DEPRECATION WARNING!!
-#
-# The two variables, setup_sas_packages and extra_packages, are deprecated and will be
-# removed in a future version of SAS Viya.
-#############################################################################################
-# When set to true, will install any additional packages defined in the extra_packages group
-setup_sas_packages: false
-
-# Define the extra packages that need to be installed on all machines
-extra_packages:
-    libselinux-python: support copying files
-#############################################################################################
+sasenv_java_home:
 
 # When set to true, enables extra logging during the deployment
 sas_deploy_debug: false
@@ -144,6 +104,7 @@ sas_deploy_debug: false
 ############################################################################
 
 # The user that the CAS process will run under
+# This user must be a member of the "sas" group
 
 casenv_user: cas
 
@@ -151,26 +112,24 @@ casenv_user: cas
 
 casenv_group: sas
 
-# The following is the initial Admin user for use with CAS Server Monitor. 
+# The following is the initial Admin user for use with CAS Server Monitor.
 # This is the user you will log into CAS Server Monitor with
 # in order to create global CAS libs and set access rights.
 # If not set, the casenv_user will be used by default.
 # If all defaults are taken, the "cas" user will not have a password
-# defined for it. To have one created by the deployment process,
-# review how to define a password as documented with the sas_users
-# collection above.
+# defined for it.
 
-#casenv_admin_user: 
+#casenv_admin_user:
 
 
 #### CAS Specific ####
 # Anything in this list will end up in the cas.settings file
 #CAS_SETTINGS:
-   #1: ODBCHOME=ODBC home directory
-   #2: ODBCINI=$ODBCHOME/odbc.ini
-   #3: ORACLE_HOME=Oracle home directory
-   #4: JAVA_HOME=/usr/lib/jvm/jre-1.8.0
-   #5: LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ORACLE_HOME/lib:$JAVA_HOME/lib/amd64/server:$ODBCHOME/lib
+  #1: ODBCHOME=ODBC home directory
+  #2: ODBCINI=$ODBCHOME/odbc.ini
+  #3: ORACLE_HOME=Oracle home directory
+  #4: JAVA_HOME=/usr/lib/jvm/jre-1.8.0
+  #5: LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ORACLE_HOME/lib:$JAVA_HOME/lib/amd64/server:$ODBCHOME/lib
 
 # Anything in this list will end up in the casconfig.lua file
 #   The env section will create a env.VARIABLE in the file
@@ -179,14 +138,14 @@ casenv_group: sas
 #     Example: cas.port = 5570
 #
 # If you have defined hosts for the sas_casserver_worker then the MODE will
-# automatically be set to 'mpp'. If the environment variables HADOOP_HOME and 
+# automatically be set to 'mpp'. If the environment variables HADOOP_HOME and
 # HADOOP_NAMENODE are set, the COLOCATION option will automatically equal 'hdfs'.
-# If HADOOP_HOME and HADOOP_NAMENODE are not set, then the COLOCATION option 
+# If HADOOP_HOME and HADOOP_NAMENODE are not set, then the COLOCATION option
 # will automatically equal 'none'.
 
 CAS_CONFIGURATION:
    env:
-     CAS_DISK_CACHE: /sastmp/sascache
+      CAS_DISK_CACHE: /sastmp/sascache
      #CAS_VIRTUAL_HOST: 'loadbalancer.company.com'
      #CAS_VIRTUAL_PROTO: 'https'
      #CAS_VIRTUAL_PORT: 443
@@ -197,14 +156,10 @@ CAS_CONFIGURATION:
      #colocation: 'none'
      #SERVICESBASEURL: 'https://loadbalancer.company.com'
 
-############################################################################
+##########################################################
 ## Foundation Configuration
-############################################################################
+##########################################################
 
-# Optional: Will use the CAS controller host as defined in the inventory
-#           file. If one is not defined it will default to localhost.
-#           If you know the host of the controller you want to connect to,
-#           provide that here
 #sasenv_cas_host:
 
 # Optional: If a value is not provided, the system will use the CAS port
@@ -219,19 +174,25 @@ CAS_CONFIGURATION:
 
 # Updates the init_deployment.properties and appserver_deployment.sh
 STUDIO_CONFIGURATION:
-  init:
+   init:
     #sasstudio.appserver.port_comment: '# Port that Studio is listening on'
     #sasstudio.appserver.port: 7080
     #sasstudio.appserver.https.port: 7443
     #webdms.workspaceServer.hostName: localhost
     #webdms.workspaceServer.port: 8591
-    webdms.showSystemRoot: false
-  appserver:
+      webdms.showSystemRoot: true
+   appserver:
     #1: '# Comment about KEY'
     #2: KEY="value with spaces"
 
 # Updates spawner.cfg
 SPAWNER_CONFIGURATION:
+setup_sas_packages: false
+extra_packages:
+   libselinux-python: support copying files
+#############################################################################################
+
+# When set to true, enables extra logging during the deployment
   #sasPort: 8591
 
 # Updates the workspaceserver autoexec_deployment.sas
