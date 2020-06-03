@@ -1,0 +1,226 @@
+#
+# Copyright (c) 2019-2020, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+# SPDX-License-Identifier: Apache-2.0
+#
+---
+####################################################################
+## Required Packages Config
+####################################################################
+# Test harness:
+#   make it pass
+#     ansible-playbook viya_pre_install_playbook.yml -i inventory --tags required_packages_config -e use_pause=0
+#   make it fail for jq by using a bad url
+#     ansible-playbook viya_pre_install_playbook.yml -i pre-install.inventory.ini --tags required_packages_config -e use_pause=0 -e jq_url=https://www.abcxyz.com/foo
+
+- block:
+
+
+  - name: Run tasks to check version of available required package
+    include_tasks: pre.package_version_check.yml
+    loop: "{{ required_package_versions_rhel }}"
+    when: ((ansible_distribution == redhat_os_name|string or ansible_distribution == oracle_os_name|string) and viya_version is version('3.5','>=') and not (ansible_architecture == plx_os_architecture|string))
+    tags:
+      - packages
+      - package_version_check
+
+    
+  # Note that Oracle 7 distributions reflect being RedHat ansible_os_family
+  - name: Include OS Family specific package names
+    include_vars: "{{ item }}"
+    with_first_found:
+      - "{{ ansible_os_family }}-{{ ansible_architecture }}.yml"
+    
+  ## works for all OS Families
+  - name: Ensures required packages are present
+    package:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - "{{packages_general}}"
+    tags:
+      - packages
+
+  - block:
+    ## block start determining supported version of java openjdk
+    - name: Get what version of Java might be installed
+      shell: java -version 2>&1 | grep version | awk '{print $3}' | sed 's/"//g'
+      check_mode: no
+      changed_when: False
+      register: java_version
+    
+    - name: Show the installed version of Java
+      debug: var=java_version.stdout
+      when: java_version.stdout != ""
+
+    - name: There is no Java installed
+      debug: var=java_version
+      when: java_version.stdout == ""
+
+    - name: Assert the installed version of Java is supported
+      assert:
+        that:
+          - java_version.stdout is version(min_java_version, '>=')
+        msg: |
+          The version of java installed ({{java_version.stdout}}) is not supported.  
+          Minimum supported version is {{min_java_version}}
+      when: java_version.stdout != ""
+
+    # exec during check mode
+    check_mode: no
+    when: viya_version is version('3.5','>=')
+    # end block
+    tags:    
+      - jdk_check
+
+  ## RHEL 6 specific
+  - name: Ensures required RHEL6 packages are present
+    package:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - "{{yum_packages_rhel6}}"
+    when: ansible_distribution == redhat_os_name|string and ansible_distribution_major_version == '6'
+    tags:
+      - packages
+
+  ## RHEL and Oracle 7 specific
+  - name: Ensures required RHEL7 or Oracle7 packages are present
+    package:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - "{{yum_packages_rhel7}}"
+    when: (ansible_distribution == redhat_os_name|string or ansible_distribution == oracle_os_name|string) and ansible_distribution_major_version == '7'
+    tags:
+      - packages
+
+  ## Suse specific
+  - name: Ensures required Suse packages are present
+    package:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - "{{packages_suse}}"
+    when: ansible_os_family == suse_os_name|string
+    tags:
+      - packages
+
+  ##
+  ## we need systemd to be above 219-30
+  ## try to make sure we have the latest one.
+  ##
+  #- name: Ensures systemd package is the most recent
+  #  package:
+  #    name: systemd
+  #    state: latest
+  #  when: ansible_distribution == redhat_os_name|string and ansible_distribution_major_version == '7'
+  #  tags:
+  #    - packages
+
+  - name: Ensures "nice to have" packages are present
+    package:
+      name: "{{ item }}"
+      state: present
+    ignore_errors: yes
+    with_items:
+      - "{{packages_nicetohave}}"
+    tags:
+      - packages
+      - nicetohave
+
+  ## On Linux 7.x, verify that the systemd package on each machine is at required version.
+  - block:
+
+    ##
+    ## Verify that systemd version meets minimum requirment
+    ##
+
+    - name: obtain systemd major version
+      shell: systemctl --version | grep systemd | awk '{print $2}'
+      register: systemd_major
+      changed_when: False
+      check_mode: no
+
+    - name: Display systemd major version
+      debug: var=systemd_major
+
+    - name: "Assert that systemd major version {{ systemd_major.stdout }} is valid."
+      assert:
+        that: 
+          - (systemd_major.stdout | int) >= (systemd_7x_min_major | int)
+        msg: "Unexpected major version of systemd.  Minimum version required is {{ systemd_7x_min_major }}-{{ systemd_7x_min_minor }}"
+
+    - name: obtain systemd minor version
+      shell: rpm systemd -q | sed 's/^[^-]*-\([0-9]*-[0-9]*\).*/\1/' | awk -F'[-]' '{print $2}'
+      args:
+        warn: false
+      register: systemd_minor
+      changed_when: False
+      check_mode: no
+
+    - name: Display systemd minor version
+      debug: var=systemd_minor
+
+    - name: "Assert that systemd minor version {{ systemd_minor.stdout }} is valid."
+      assert:
+        that: 
+          - (systemd_major.stdout | int) == (systemd_7x_min_major | int)
+          - (systemd_minor.stdout | int) >= (systemd_7x_min_minor | int)
+        msg: "Unexpected minor version of systemd. Minimum version required is {{ systemd_7x_min_major }}-{{ systemd_7x_min_minor }}"
+
+
+    when: ansible_distribution_major_version == '7'
+    tags:
+      - systemd
+      - packages
+
+  ## Install jq-1.5 utility for VI
+  - block:
+
+    - debug:
+        msg: "SAS Viya version is {{viya_version}}"
+      tags:
+      - show_viya_version
+      - jq_debug
+
+    - name: Determine if jq is available
+      changed_when: false
+      check_mode: no
+      ignore_errors: yes
+      shell: which jq
+      register: which_jq
+
+    # - debug: var=which_jq
+    ## Block start (if jq can't be found)
+
+    - block:
+      - name: Confirm that /usr/bin/jq does not exist
+        stat:
+          path: "/usr/bin/jq"
+        register: usr_bin_jq
+
+      - name: Display whether /usr/bin/jq exists or not
+        debug: var=usr_bin_jq
+
+      - name: "If jq is not found in /usr/bin, download jq-1.5 utility into it"
+        get_url:
+          url: "{{jq_url}}"
+          dest: "/usr/bin/jq"
+          mode: 0755
+          owner: root
+          group: root
+        when: usr_bin_jq.stat.exists == false
+
+      ## end of inner block
+      when: which_jq.rc != 0
+
+    ## end outer block
+    when: viya_version is version('3.4', '<=')  
+    tags:
+      - jq
+      - packages
+  
+  ## block end
+  tags:
+    - required_packages_config
+    - fixable

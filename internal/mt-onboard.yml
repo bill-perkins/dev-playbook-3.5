@@ -1,0 +1,24 @@
+---
+# file: mt-onboard.yml
+
+# This tells the mid-tier to onboard the tenant
+
+# This is running on the CommandLine host but for this script to work it will need
+# the Consul client token as well as the postgres libs available as well.
+
+- name: "Onboard tenant"
+  hosts: CommandLine
+  any_errors_fatal: true
+  gather_facts: false
+  become: true
+  become_user: root
+  run_once: true
+
+  vars:
+    tenant_action: "onboard"
+    tenant_action_command: "{{ SASROOT }}/viya/home/bin/tenant_onboard.sh"
+
+  tasks:
+    - include: '../tasks/run_tenant_command.yml'
+
+...

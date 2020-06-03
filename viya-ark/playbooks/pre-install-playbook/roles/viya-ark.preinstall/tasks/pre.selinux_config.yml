@@ -1,0 +1,108 @@
+#
+# Copyright (c) 2019-2020, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+# SPDX-License-Identifier: Apache-2.0
+#
+---
+####################################################################
+## SELINUX Config
+####################################################################
+# Test harness:
+#   make it pass
+#     ansible-playbook viya_pre_install_playbook.yml --tags selinux_config -e use_pause=0
+#   make it fail
+#
+
+- debug:
+    msg: "SAS Viya version is {{viya_version}}"
+  tags:
+    - show_viya_version
+    - selinux_config
+
+- name: Check if SELinux config file exists (signifying SELinux is installed)
+  stat:
+    path: /etc/selinux/config
+  register: config_file
+  tags:
+    - prereq
+    - selinux_config
+
+- debug:
+    msg: "/etc/selinux/config doesn't exist."
+  when: not config_file.stat.exists
+  tags:
+    - prereq
+    - selinux_config
+
+- debug:
+    msg: "/etc/selinux/config exists."
+  when: config_file.stat.exists
+  tags:
+    - prereq
+    - selinux_config
+
+- block:
+  ## block start
+
+  - name: Set SELinux to Permissive mode (will only take effect after a reboot)
+    ## this could also be set to permissive
+    lineinfile:
+      dest=/etc/selinux/config
+      regexp="^SELINUX=.*"
+      line="SELINUX=permissive"
+      state=present
+      backup=yes
+    tags:
+      - prereq
+      - selinux
+
+  - name: Get selinux status
+    shell: /usr/sbin/getenforce
+    changed_when: False
+    check_mode: no
+    register: selinuxstatus
+    tags:
+      - prereq
+      - selinux
+
+  - name: Make SELinux permissive (in the current session) but only if it's currently enabled
+    shell: "setenforce 0"
+    changed_when: False
+    check_mode: no
+    when: selinuxstatus.stdout is defined and  selinuxstatus.stdout == 'Enforcing'
+    ignore_errors: yes
+
+  when: config_file.stat.exists and viya_version is version('3.4', '<=')
+  ## block end
+  tags:
+    - prereq
+    - selinux_config
+
+
+- block:
+  ## block start
+
+  - name: Get selinux status
+    shell: /usr/sbin/getenforce
+    changed_when: False
+    check_mode: no
+    register: selinuxstatus
+    tags:
+      - prereq
+      - selinux
+
+  - name: Check to see if SELinux is configured appropriate for deployment
+    assert:
+      that:
+        - selinuxstatus.stdout is defined and selinuxstatus.stdout != 'Enforcing'
+      fail_msg: 
+        "The pre-installation playbook has determined that SELinux is not set appropriate for deployment ({{selinuxstatus.stdout}}). 
+        See the 'Configure SELinux' topic in SAS Viya on Linux: Deployment Guide for information about 
+        deploying with SELinux."
+      success_msg:
+        "The pre-installation playbook has determined that SELinux is set to {{selinuxstatus.stdout}}."
+
+  when: config_file.stat.exists and viya_version is version('3.5', '>=')
+  ## block end
+  tags:
+    - prereq
+    - selinux_config

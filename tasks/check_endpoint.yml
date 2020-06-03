@@ -1,0 +1,52 @@
+---
+# file: check_endpoint.yml
+
+- block:
+  - name: Check for URL override
+    set_fact:
+      URL_TO_CHECK: '{{ url_to_check }}'
+      BAD_URL_ERROR_MSG: Check your DNS setup and the {{ ENDPOINT_TYPE }}_url ({{ url_to_check }}) specified for this {{ ENDPOINT_TYPE }}.
+    when: url_to_check | length > 0
+
+  - block:
+    - name: Get endpoint URL if not overridden
+      shell: |
+        . '{{ SASROOT }}/viya/config/consul.conf' ;
+        export CONSUL_TOKEN=$(cat "{{ SASROOT }}/viya/config/etc/SASSecurityCertificateFramework/tokens/consul/default/client.token")
+        export SASTENANTID="{{ SASTENANTID }}"
+        '{{ SASROOT }}/viya/home/bin/sas-bootstrap-config' catalog serviceurl --wait --tick-seconds 10 --timeout-seconds 300 httpd
+      become: yes
+      become_user: '{{ INSTALL_USER }}'
+      register: get_endpoint_url
+      changed_when: False
+
+    - name: Set URL_TO_CHECK
+      set_fact:
+        URL_TO_CHECK: "{{ get_endpoint_url.stdout }}"
+        BAD_URL_ERROR_MSG: Check your DNS setup. Consider setting the optional {{ ENDPOINT_TYPE }}_url value if necessary.
+
+    when: url_to_check | length < 1
+
+  - name: Dump endpoint URL for troubleshooting
+    debug:
+      msg: "{{ ENDPOINT_TYPE }} endpoint URL={{ URL_TO_CHECK }}"
+
+  - name: Test endpoint URL
+    shell: |
+      . '{{ SASROOT }}/viya/config/consul.conf' ;
+      curl -k -I --silent --output /dev/null --write-out "%{http_code}"  "{{ URL_TO_CHECK }}{{ url_test_context }}"
+    become: yes
+    become_user: '{{ INSTALL_USER }}'
+    register: test_endpoint_url
+    changed_when: False
+    failed_when: False
+
+  - name: Check for test endpoint URL failure
+    fail:
+      msg: |
+        ERROR: Bad return code testing {{ ENDPOINT_TYPE }} endpoint URL
+        ({{ URL_TO_CHECK }}{{ url_test_context }}). (curl_rc={{ test_endpoint_url.rc }} http_rc={{ test_endpoint_url.stdout }}).
+        {{ BAD_URL_ERROR_MSG }}
+    when: test_endpoint_url.rc != 0 or test_endpoint_url.stdout != "200"
+
+  when: not ansible_check_mode

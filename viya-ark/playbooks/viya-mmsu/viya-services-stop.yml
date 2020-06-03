@@ -1,0 +1,259 @@
+####################################################################
+#### viya-services-stop.yml                                     ####
+####################################################################
+#### Author: SAS Institute Inc.                                 ####
+####################################################################
+#
+# Copyright (c) 2019-2020, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+# SPDX-License-Identifier: Apache-2.0
+#
+---
+- import_playbook: ../common/handle_hostgroup_hyphens.yml
+  tags:
+    - always
+
+- hosts: sas_all
+  become: yes
+  become_user: root
+  gather_facts: false
+  any_errors_fatal: true
+  vars_files:
+    - viya-services-vars.yml
+
+  tasks:
+    - name: Check any SAS process running
+      #shell: "{{sasps_cmd}}|tail -1"
+      script: viya-svs.sh checkps 1
+      register: psflag
+      ignore_errors: true
+      check_mode: no
+      changed_when: false
+
+    - set_fact:
+        deployhostnum: "{{groups['sas_all'] | length }}"
+        check_mode: no
+
+- hosts: sas_all
+  become: yes
+  become_user: root
+  gather_facts: false
+  any_errors_fatal: true
+  vars_files:
+    - viya-services-vars.yml
+  tasks:
+
+    - block:
+
+      - name: Stop SAS microservices
+        script: viya-svs.sh stopms
+        when: deployhostnum | int != 1
+
+      - name: Stop SAS multi-tenant services
+        script: viya-svs.sh stopmt
+
+      - name: Stop SAS all services on a single machine deployment
+        script: viya-svs.sh stop sas-viya-all-services
+        when: deployhostnum | int == 1
+
+      any_errors_fatal: true
+      when: psflag.stdout != "" and not ansible_check_mode
+
+- hosts: httpproxy
+  become: yes
+  become_user: root
+  gather_facts: false
+  any_errors_fatal: true
+  tasks:
+    - name: Stop SAS HTTP proxy service
+      script: viya-svs.sh stop sas-viya-httpproxy-default
+      when: psflag.stdout != "" and deployhostnum | int != 1
+
+- hosts: sas_casserver_primary
+  become: yes
+  become_user: root
+  gather_facts: false
+  any_errors_fatal: true
+  tasks:
+    - name: Stop SAS CAS server
+      script: viya-svs.sh stopcas
+      when: psflag.stdout != "" and deployhostnum | int != 1
+
+- hosts: sas_all
+  become: yes
+  become_user: root
+  gather_facts: false
+  any_errors_fatal: true
+  vars_files:
+    - ../../../vars.yml
+  tasks:
+    - block:
+      - name: Stop SAS Infrastructure Data Server
+        include_tasks: viya-db.yml
+        vars:
+          dbname: "{{INVOCATION_VARIABLES[inventory_hostname]['pgpoolc'][0]['SERVICE_NAME']|default([])}}"
+          dbaction: "stopdb"
+          dbnum: "{{INVOCATION_VARIABLES[inventory_hostname]['pgpoolc'][0]['POOL_NUMBER']|default([])}}"
+          dbtype: pgpool
+        when: INVOCATION_VARIABLES[inventory_hostname]['pgpoolc'] is defined
+
+      - name: Stop SAS Infrastructure Data Server Node
+        include_tasks: viya-db.yml
+        vars:
+          dbname: "{{INVOCATION_VARIABLES[inventory_hostname]['sasdatasvrc'][0]['SERVICE_NAME']|default([])}}"
+          dbaction: "stopdb"
+          dbnum: "{{INVOCATION_VARIABLES[inventory_hostname]['sasdatasvrc'][0]['NODE_NUMBER']|default([])}}"
+          dbtype: node
+        when: INVOCATION_VARIABLES[inventory_hostname]['sasdatasvrc'] is defined
+
+      - name: Stop SAS Infrastructure Data Server Consul Template
+        include_tasks: viya-dbct.yml
+        vars:
+          dbname: "{{INVOCATION_VARIABLES[inventory_hostname]['pgpoolc'][0]['SERVICE_NAME']|default([])}}"
+          dbaction: stopdbct
+          dbtype: pgpool
+        when: INVOCATION_VARIABLES[inventory_hostname]['pgpoolc'] is defined and INVOCATION_VARIABLES[inventory_hostname]['pgpoolc'][0]['HA_PGPOOL_VIRTUAL_IP'] is defined
+
+      - name: Stop SAS Infrastructure Data Server Node Consul Template
+        include_tasks: viya-dbct.yml
+        vars:
+          dbname: "{{INVOCATION_VARIABLES[inventory_hostname]['sasdatasvrc'][0]['SERVICE_NAME']|default([])}}"
+          dbaction: stopdbct
+          dbtype: node
+        when: INVOCATION_VARIABLES[inventory_hostname]['sasdatasvrc'] is defined
+
+      - name: Stop SAS Infrastructure Data Server
+        include_tasks: viya-db.yml
+        vars:
+          dbname: "{{INVOCATION_VARIABLES[inventory_hostname]['cpspgpoolc'][0]['SERVICE_NAME']|default([])}}"
+          dbaction: "stopdb"
+          dbnum: "{{INVOCATION_VARIABLES[inventory_hostname]['cpspgpoolc'][0]['POOL_NUMBER']|default([])}}"
+          dbtype: pgpool
+        when: INVOCATION_VARIABLES[inventory_hostname]['cpspgpoolc'] is defined
+
+      - name: Stop SAS Infrastructure Data Server Node
+        include_tasks: viya-db.yml
+        vars:
+          dbname: "{{INVOCATION_VARIABLES[inventory_hostname]['cpsdatasvrc'][0]['SERVICE_NAME']|default([])}}"
+          dbaction: "stopdb"
+          dbnum: "{{INVOCATION_VARIABLES[inventory_hostname]['cpsdatasvrc'][0]['NODE_NUMBER']|default([])}}"
+          dbtype: node
+        when: INVOCATION_VARIABLES[inventory_hostname]['cpsdatasvrc'] is defined
+
+      - name: Stop SAS Infrastructure Data Server Consul Template
+        include_tasks: viya-dbct.yml
+        vars:
+          dbname: "{{INVOCATION_VARIABLES[inventory_hostname]['cpspgpoolc'][0]['SERVICE_NAME']|default([])}}"
+          dbaction: stopdbct
+          dbtype: pgpool
+        when: INVOCATION_VARIABLES[inventory_hostname]['cpspgpoolc'] is defined and INVOCATION_VARIABLES[inventory_hostname]['cpspgpoolc'][0]['HA_PGPOOL_VIRTUAL_IP'] is defined
+
+      - name: Stop SAS Infrastructure Data Server Node Consul Template
+        include_tasks: viya-dbct.yml
+        vars:
+          dbname: "{{INVOCATION_VARIABLES[inventory_hostname]['cpsdatasvrc'][0]['SERVICE_NAME']|default([])}}"
+          dbaction: stopdbct
+          dbtype: node
+        when: INVOCATION_VARIABLES[inventory_hostname]['cpsdatasvrc'] is defined
+
+      when: psflag.stdout != "" and deployhostnum | int != 1 and INVOCATION_VARIABLES[inventory_hostname] is defined
+
+- hosts: rabbitmq
+  become: yes
+  become_user: root
+  gather_facts: false
+  any_errors_fatal: true
+  tasks:
+    - name: Stop SAS Message Broker RabbitMQ
+      any_errors_fatal: true
+      script: viya-svs.sh stop sas-viya-rabbitmq-server-default
+      when: psflag.stdout != "" and deployhostnum | int != 1
+
+- hosts: sas_all:!consul
+  become: yes
+  become_user: root
+  gather_facts: false
+  any_errors_fatal: true
+  vars_files:
+    - viya-services-vars.yml
+  tasks:
+    - name: Stop SAS Configuration consul Agent(s)
+      any_errors_fatal: true
+      script: viya-svs.sh stop sas-viya-consul-default {{consul_retry_count}}
+      when: psflag.stdout != "" and deployhostnum | int != 1
+
+- hosts: consul
+  become: yes
+  become_user: root
+  gather_facts: false
+  any_errors_fatal: true
+  vars_files:
+    - viya-services-vars.yml
+  tasks:
+    - name: Stop SAS Secret Manager - vault
+      any_errors_fatal: true
+      script: viya-svs.sh stop sas-viya-vault-default
+      when: psflag.stdout != "" and deployhostnum | int != 1
+
+    - name: Stop SAS Configuration consul Server(s)
+      any_errors_fatal: true
+      script: viya-svs.sh stop sas-viya-consul-default {{consul_retry_count}}
+      when: psflag.stdout != "" and deployhostnum | int != 1
+
+- hosts: ComputeServer
+  become: yes
+  become_user: root
+  gather_facts: false
+  any_errors_fatal: true
+  tasks:
+
+      - name: Clean up SAS compsrv child processes
+        script: viya-svs.sh cleancomp
+        when: not ansible_check_mode
+
+- hosts: sas_all
+  become: yes
+  become_user: root
+  gather_facts: false
+  any_errors_fatal: true
+  vars_files:
+    - viya-services-vars.yml
+  tasks:
+    - name: Display SAS processes information
+      debug: msg="No Viya process running" 
+      when: psflag.stdout == ""
+      check_mode: no
+
+    - block:
+      - name: Capture SAS stray processes
+        script: "viya-svs.sh checkps {{stray_process_count}}"
+        register: stray_processes
+        changed_when: false
+        check_mode: no
+
+      - name: Display SAS stray processes
+        debug:
+          msg:
+            - "Please examine the following stray process(es)"
+            - "If enable_stray_cleanup=true, process will be cleaned up automatically"
+            - "except database processes which require fix manually to avoid data corruption."
+            - "This playbook can be rerun to clean up the child processes."
+            - "{{stray_processes.stdout_lines}}"
+        failed_when: stray_processes.stdout != '' and not ansible_check_mode
+        when: (stray_processes.stdout != '') and (enable_stray_cleanup|bool != true)
+
+      - name: Clean up SAS stray processes if enabled
+        script: viya-svs.sh cleanps
+        when: (enable_stray_cleanup|bool == true) and (stray_processes.stdout != '')
+        check_mode: no
+        any_errors_fatal: true
+
+      - name: Display SAS cleanup stray processes
+        debug:
+          msg:
+            - "The following stray processes have been cleaned up"
+            - "{{stray_processes.stdout_lines}}"
+        check_mode: no
+        when: (stray_processes.stdout != '') and (enable_stray_cleanup|bool == true)
+
+      when: psflag.stdout != ""
+

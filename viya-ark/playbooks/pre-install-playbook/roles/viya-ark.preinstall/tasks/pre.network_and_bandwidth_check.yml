@@ -1,0 +1,124 @@
+#
+# Copyright (c) 2019, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+# SPDX-License-Identifier: Apache-2.0
+#
+---
+####################################################################
+## Network and Bandwidth Check
+####################################################################
+# Test harness
+#   make it pass
+#     ansible-playbook viya_pre_install_playbook.yml --tags network_and_bandwidth_check -e "use_pause=0" -e "max_num_priv_ips=10"
+#   make it fail
+#     ansible-playbook viya_pre_install_playbook.yml --tags network_and_bandwidth_check -e "use_pause=0" -e "max_num_priv_ips=0"
+
+- block:
+  ## block start
+
+  - name: "Count the number of private IPs (other than loopback)"
+    shell: "{{priv_ip_count_command}}"
+    changed_when: False
+    check_mode: no
+    register: num_priv_ips
+    tags:
+      - nics
+      - privips
+
+  - name: Show the number of private IPs found on the server
+    debug: var=num_priv_ips.stdout
+    tags:
+      - nics
+      - privips
+
+  - name: "If the variable 'consul_bind_adapter=' is set in the inventory, gather the list of network interfaces"
+    shell: "ls /sys/class/net"
+    changed_when: False
+    check_mode: no
+    when: consul_bind_adapter is defined
+    register: adapters
+    tags:
+      - nics
+
+  - name: Show the names of the network interfaces
+    debug: var=adapters
+    tags:
+      - nics
+
+  - name: Assert that there are only {{max_num_priv_ips|int}} IP(s) or less on the server
+    assert:
+      that:
+        - (num_priv_ips.stdout | int) <= (max_num_priv_ips | int)
+      msg: |
+        "This server seems to have {{num_priv_ips.stdout|int}} IP addresses.
+        It should only have {{max_num_priv_ips|int}} at most.
+        This will require more work for Consul to successfully start.
+        Please read the Deployment guide and search for the reference to the following parameter: consul_bind_adapter=
+        You can add --skip-tags skipipsfail to suppress this failure and message."
+    when: consul_bind_adapter is not defined
+    tags:
+      - nics
+      - privips
+      - skipipsfail
+      - skipifbelowspecs
+      - skipnicssfail
+
+  - name: Assert that the consul_bind_adapter provided in the inventory actually exists
+    assert:
+      that:
+        - (consul_bind_adapter)  in (adapters.stdout)
+      msg: |
+        "In the inventory, you provided a value for consul_bind_adapter of '{{consul_bind_adapter}}'.
+        This server only has the following Network Adapters:
+        {{adapters.stdout_lines}}
+        The network adapter name you provided does not seem to match any from the server.
+        Either correct the name for consul_bind_adapter, or add --skip-tags skipnicssfail to suppress this failure and message."
+    when: consul_bind_adapter is defined
+    tags:
+      - nics
+      - skipifbelowspecs
+      - skipnicssfail
+
+  - name: "Trying to hit the SAS yum repository "
+    shell: "curl -v -k https://{{item}}/"
+    changed_when: False
+    check_mode: no
+    register: curl_sas_yum
+    with_items: "{{sas_yum_urls}}"
+    failed_when: "('Connected' in curl_sas_yum.stderr and item in curl_sas_yum.stderr ) != true"
+    tags:
+      - yum_repo
+
+  ## Generic Speed Test of Connection to the Internet
+  - name: Bandwidth to the Internet Check - Download 100 MB file
+          - (the higher the better, otherwise downloading rpms will take long)
+    shell: "time curl -o /dev/null  http://speedtest.sea01.softlayer.com/downloads/test100.zip 2>&1 | tail"
+    check_mode: no
+    changed_when: False
+    register: time_speed_test
+    tags:
+      - bandwidth
+
+  - name: Display bandwidth test results
+    debug: var=time_speed_test.stdout_lines
+    tags:
+      - bandwidth
+
+  ## DNS and Addressing
+  - name: Hostname Ping check - (a server has to know itself by its hostname)
+    shell: 'ping `hostname` -c 1'
+    check_mode: no
+    changed_when: False
+    register: hostname_ping
+    tags:
+      - hostname
+
+  - name: Show the results of the self ping test
+    debug: var=hostname_ping.stdout_lines
+    tags:
+      - hostname
+
+  ## block end
+  tags:
+    - network_and_bandwidth_check
+    - detectableonly
+

@@ -1,0 +1,155 @@
+####################################################################
+#### run-deployment-report.yml                                  ####
+####################################################################
+#### Author: SAS Institute Inc.                                 ####
+####################################################################
+#
+# Copyright (c) 2019-2020, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+# SPDX-License-Identifier: Apache-2.0
+#
+####################################################################
+#
+# This playbook gathers information about SAS software installed on
+# the hosts in the given inventory file as well as a snapshot of
+# some system resources, like memory and filesystem usage. This
+# playbook does not alter state on any host except for the Ansible
+# controller where the .yml and .html files are written.
+#
+####################################################################
+
+---
+- import_playbook: ../common/handle_hostgroup_hyphens.yml
+  tags:
+    - always
+
+- name: "Viya Deployment Report"
+  hosts: sas_all
+
+  vars:
+    # These variables can be safely overridden on the commandline
+    existing_data_file: ""
+    include_package_files: false
+    exclude_html: false
+    report_file_name: "viya_deployment_report"
+    report_data_file_name: "{{ report_file_name + '_data' }}"
+    output_dir: "{{ playbook_dir + '/../../..' }}"
+    include_hotfix_report: True
+    hotfix_url: "http://ftp.sas.com/techsup/download/hotfix/HF2/util01/Viya/data/"
+    #These variables cannot be overridden on the commandline.
+    legacy_products_exist: "{{ hostvars['localhost']['sas_deployment_details']['legacy_products_found'] }}"
+    products_with_no_hotfixes_exist: "{{ hostvars['localhost']['sas_deployment_details']['no_hotfixes_available'] }}"
+
+  tasks:
+    - name: "Check for existing data - ({{ existing_data_file }})"
+      stat:
+        path: "{{ existing_data_file }}"
+      delegate_to: localhost
+      run_once: true
+      register: data
+      when: existing_data_file != ""
+
+    - name: "Load existing data file"
+      include_vars:
+        file: "{{ existing_data_file }}"
+        name: sas_deployment_details
+      delegate_to: localhost
+      delegate_facts: true
+      run_once: true
+      when: existing_data_file != "" and data.stat.exists
+
+    - name: "Get SAS host details"
+      get_sas_host_details:
+        hostvars: "{{ hostvars[inventory_hostname] }}"
+        include_package_files: "{{ include_package_files }}"
+      become: true
+      when: existing_data_file == "" or not data.stat.exists
+      register: get_sas_host_details_results
+
+    - name: "Process SAS host details"
+      process_sas_host_details:
+        hostvars: "{{ hostvars }}"
+        report_timestamp: "{{ '%A, %B %d, %Y %I:%M%p'|strftime(ansible_date_time.epoch) }}"
+        registered_dict_name: 'get_sas_host_details_results'
+        include_hotfix_report: "{{ include_hotfix_report }}"
+        hotfix_url: "{{ hotfix_url }}"
+      delegate_to: localhost
+      run_once: true
+      register: process_sas_host_details_results
+      when: existing_data_file == "" or not data.stat.exists
+
+    - set_fact:
+        sas_deployment_details: "{{ process_sas_host_details_results.processed_host_details }}"
+      delegate_to: localhost
+      delegate_facts: true
+      run_once: true
+      when: existing_data_file == "" or not data.stat.exists
+
+    - set_fact:
+        sas_viya_deployment_report_file: "{{ output_dir | realpath }}/{{ report_file_name + '_' + '%F_%H-%M-%S'|strftime(ansible_date_time.epoch) + '.html' }}"
+        sas_viya_deployment_report_data_file: "{{ output_dir | realpath }}/{{ report_data_file_name + '_' + '%F_%H-%M-%S'|strftime(ansible_date_time.epoch) + '.yml' }}"
+      delegate_to: localhost
+      delegate_facts: true
+      run_once: true
+
+    - block:
+        - name: "Create Viya Deployment Report data file"
+          copy:
+            content: "{{ hostvars['localhost']['sas_deployment_details'] | to_nice_yaml }}"
+            dest: "{{ hostvars['localhost']['sas_viya_deployment_report_data_file'] }}"
+            mode: 0640
+          delegate_to: localhost
+          run_once: true
+          when: existing_data_file == "" or not data.stat.exists
+      rescue:
+        - name: "Create Viya Deployment Report data file (formatting omitted due to error)"
+          copy:
+            content: "{{ hostvars['localhost']['sas_deployment_details'] }}"
+            dest: "{{ hostvars['localhost']['sas_viya_deployment_report_data_file'] }}"
+            mode: 0640
+          delegate_to: localhost
+          run_once: true
+          when: existing_data_file == "" or not data.stat.exists
+
+    - name: "Display legacy skipped products"
+      debug:
+        msg: "{{ hostvars['localhost']['sas_deployment_details']['hotfix_legacy_products'].split('\n')[:-1] }}"
+      delegate_to: localhost
+      run_once: true
+      when: include_hotfix_report and legacy_products_exist|bool
+
+    - name: "Display installed products with no hotfixes"
+      debug:
+        msg: "{{ hostvars['localhost']['sas_deployment_details']['no_hotfix_products'].split('\n')[:-1] }}"
+      delegate_to: localhost
+      run_once: true
+      when: include_hotfix_report and products_with_no_hotfixes_exist|bool
+
+    - name: "Summarize hotfix report sources"
+      debug:
+        msg: "{{ hostvars['localhost']['sas_deployment_details']['hotfix_scanned_files'].split('\n')[:-1] }}"
+      delegate_to: localhost
+      run_once: true
+      when: include_hotfix_report
+
+    - name: "Viya Deployment Report Data location"
+      debug:
+        msg: "Created {{ hostvars['localhost']['sas_viya_deployment_report_data_file'] }}"
+      delegate_to: localhost
+      run_once: true
+      when: existing_data_file == "" or not data.stat.exists
+
+    - name: "Create Viya Deployment HTML Report"
+      template:
+        src: templates/viya_deployment_report.html.j2
+        dest: "{{ hostvars['localhost']['sas_viya_deployment_report_file'] }}"
+        mode: 0640
+      delegate_to: localhost
+      run_once: true
+      when: not exclude_html
+
+    - name: "Viya Deployment Report location"
+      debug:
+        msg: "Created {{ hostvars['localhost']['sas_viya_deployment_report_file'] }}"
+      delegate_to: localhost
+      run_once: true
+      when: not exclude_html

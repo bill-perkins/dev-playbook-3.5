@@ -1,0 +1,22 @@
+# file: mt-cli-delete.yml
+
+# This is running on the CommandLine host but for this script to work it will need
+# the Consul client token as well as the postgres libs available as well.
+
+- name: "Running the sas-admin CLI to delete the tenant"
+  hosts: CommandLine
+  any_errors_fatal: true
+  gather_facts: false
+  become: true
+  become_user: root
+  run_once: true
+
+  vars:
+    tenant_action: "delete"
+    tenant_action_command: "{{ SASROOT }}/viya/home/bin/tenant_offboard.sh --action delete"
+    sas_delete_tenant: "{{ delete_tenant | default('true') }}"
+
+  tasks:
+    - include: '../tasks/run_tenant_command.yml'
+      when: (sas_delete_tenant|lower == 'true')
+...

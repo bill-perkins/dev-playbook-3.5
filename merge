@@ -1,0 +1,7 @@
+#!/bin/sh
+
+#ansible-playbook viya-ark/playbooks/merge-playbook/merge-viya-deployment-files.yml -e "current_inventory_file=/local/sas_viya_playbook_CURRENT/inventory.ini -e "merge_default_host=deployTarget"
+
+ansible-playbook viya-ark/playbooks/merge-playbook/merge-viya-deployment-files.yml -e "merge_default_host=deployTarget"
+
+# EOF:

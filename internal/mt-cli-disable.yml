@@ -1,0 +1,23 @@
+# file: mt-cli-disable.yml
+
+# This tells the mid-tier to disable the tenant
+
+# This is running on the CommandLine host but for this script to work it will need
+# the Consul client token as well as the postgres libs to be available.
+
+- name: "Running the sas-admin CLI to disable the tenant"
+  hosts: CommandLine
+  any_errors_fatal: true
+  gather_facts: false
+  become: true
+  become_user: root
+  run_once: true
+
+  vars:
+    tenant_action: "disable"
+    tenant_action_command: "{{ SASROOT }}/viya/home/bin/tenant_offboard.sh --action disable"
+
+  tasks:
+    - include: '../tasks/run_tenant_command.yml'
+
+...

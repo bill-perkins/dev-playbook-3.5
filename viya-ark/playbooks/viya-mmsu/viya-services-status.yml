@@ -1,0 +1,61 @@
+####################################################################
+#### viya-services-status.yml                                   ####
+####################################################################
+#### Author: SAS Institute Inc.                                 ####
+####################################################################
+#
+# Copyright (c) 2019, SAS Institute Inc., Cary, NC, USA.  All Rights Reserved.
+# SPDX-License-Identifier: Apache-2.0
+#
+---
+- import_playbook: ../common/handle_hostgroup_hyphens.yml
+  tags:
+    - always
+
+- hosts: sas_all
+  become: yes
+  become_user: root
+  gather_facts: false
+  check_mode: no
+  vars_files:
+    - viya-services-vars.yml
+  tasks:
+    - name: Capture all SAS services status from Consul
+      script: viya-svs.sh svastatus
+      changed_when: false
+      register: svas_status
+
+    - set_fact:
+        cflag: true
+
+    - name: Set consul flag
+      set_fact:
+        cflag: false
+      when: svas_status.stdout is search('Consul is down')
+
+    - name: Display SAS service status from Configuration Server (Consul)
+      debug: msg="{{svas_status.stdout_lines}}"
+
+- hosts: httpproxy
+  become: yes
+  become_user: root
+  gather_facts: false
+  check_mode: no
+  vars_files:
+    - viya-services-vars.yml
+  tasks:
+    - block:
+
+      - name: Capture SAS Viya URLs from the Apache HTTP Proxy
+        script: viya-svs.sh geturls {{url_link}}
+        check_mode: no
+        changed_when: false
+        register: url_list
+
+      - name: Display SAS Viya URLs
+        debug:
+          msg:
+           - "Available Viya services URL listing:"
+           - "{{url_list.stdout_lines}}"
+
+      when: cflag
