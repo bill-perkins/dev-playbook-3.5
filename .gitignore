@@ -4,3 +4,4 @@ filter_plugins/*.pyc
 viya-ark/playbooks/merge-playbook/merged_files
 deployment.log*
 snapshot
+*.pyc
