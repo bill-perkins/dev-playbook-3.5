@@ -1,0 +1,8 @@
+SSH_DEFINITIONS:
+  default:
+    hosts:
+    - controller1
+    - controller2
+    - worker1
+    - worker2
+    user: cas
