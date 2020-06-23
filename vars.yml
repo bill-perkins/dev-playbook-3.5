@@ -133,6 +133,10 @@ casenv_group: sas
   #4: JAVA_HOME=/usr/lib/jvm/jre-1.8.0
   #5: LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ORACLE_HOME/lib:$JAVA_HOME/lib/amd64/server:$ODBCHOME/lib
 
+CAS_SETTINGS:
+   1: JAVA_HOME=/usr/lib/jvm/jre-1.8.0
+   2: LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$JAVA_HOME/lib/amd64/server
+
 # Anything in this list will end up in the casconfig.lua file
 #   The env section will create a env.VARIABLE in the file
 #     Example: env.CAS_DISK_CACHE = '/tmp'
@@ -206,6 +210,10 @@ extra_packages:
 #FOUNDATION_CONFIGURATION:
   #1: '# Comment about KEY'
   #2: KEY=value
+
+FOUNDATION_CONFIGURATION:
+   1: JAVA_HOME=/usr/lib/jvm/jre-1.8.0
+   2: LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$JAVA_HOME/lib/amd64/server
 
 # Creates a workspaceserver sasv9_deployment.cfg file
 #SASV9_CONFIGURATION:
