@@ -5,3 +5,9 @@ viya-ark/playbooks/merge-playbook/merged_files
 deployment.log*
 snapshot
 *.pyc
+nohup.out
+site.yml.log
+license-list
+*.zip
+*.hld
+deployment.log
